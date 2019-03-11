@@ -3,7 +3,10 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html,body{
+    /*
     background-image: url('https://wallpaperstream.com/wallpapers/full/friendship/Friends-Group-and-Moon-Wallpaper.jpg');
+    */
+    background: url("friends.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
@@ -16,13 +19,19 @@ html,body{
 }
 
 .card{
-    height: 370px;
+    height: 500px;
     margin-top: auto;
     margin-bottom: auto;
     width: 400px;
     background-color: rgba(0,0,0,0.5) !important;
 }
-
+.cardgiris{
+    height: 340px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0,0,0,0.5) !important;
+}
 .social_icon span{
     font-size: 60px;
     margin-left: 10px;
@@ -87,3 +96,5 @@ input:focus{
 .links a{
     margin-left: 4px;
 }
+
+

@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class Controller {
 
     @GetMapping(value = "/")
-    public String anaEkrn(Model model){
-        model.addAttribute("deneme","Hello World!!");
-        return "home";
+    public String anaEkrn(){
+        return "giris";
+    }
+    @GetMapping(value = "/kayitol")
+    public String kayitolekranac(){
+        return "kayitol";
     }
 
 }
