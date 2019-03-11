@@ -43,8 +43,6 @@
             <artifactId>jquery</artifactId>
             <version>3.3.1-2</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/babel/babel -->
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
