@@ -1,11 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>Ana Sayfa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link th:href="@{css/anasayfa.css}" href="/static/css/anasayfa.css"
+          rel="stylesheet" type="text/css" media="screen"/>
 </head>
 <body>
+<div>
 
+    <div class="card  cardboyut cardarasibosluk" >
+        <div class="card-header">
+            <h5 class="card-title">Nasıl filmlerden hoşlanırım?</h5>
+        </div>
+        <div class="card-bod container">
+            <div class="funkyradio row">
+                <div class="funkyradio-success col" >
+                    <input type="radio" name="radio" id="radio1" />
+                    <label for="radio1">macera</label>
+                </div>
+                <div class="funkyradio-success col" >
+                    <input type="radio" name="radio" id="radio2" checked/>
+                    <label for="radio2">aşk</label>
+                </div>
+                <div class="w-100"></div>
+                <div class="funkyradio-success col" >
+                    <input type="radio" name="radio" id="radio3" />
+                    <label for="radio3">gerilim</label>
+                </div>
+                <div class="funkyradio-success col" >
+                    <input type="radio" name="radio" id="radio4" />
+                    <label for="radio4">bilim-kurgu</label>
+                </div>
 
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card  cardboyut cardarasibosluk" >
+        <div class="card-header">
+            <h5 class="card-title">En sevdiğim içecek nedir</h5>
+        </div>
+        <div class="card-bod container">
+            <div class="funkyradio row">
+                <div class="funkyradio-success col" >
+                    <input type="radio" name="radio2.soru" id="radio5" />
+                    <label for="radio5">kola</label>
+                </div>
+                <div class="funkyradio-success col" >
+                    <input type="radio" name="radio2.soru" id="radio6" checked/>
+                    <label for="radio6">ayran</label>
+                </div>
+                <div class="w-100"></div>
+                <div class="funkyradio-success col" >
+                    <input type="radio" name="radio2.soru" id="radio7" />
+                    <label for="radio7">süt</label>
+                </div>
+                <div class="funkyradio-success col" >
+                    <input type="radio" name="radio2.soru" id="radio8" />
+                    <label for="radio8">vişne suyu</label>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
 </body>
 </html>

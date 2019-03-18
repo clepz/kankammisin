@@ -11,9 +11,15 @@ public class Controller {
     public String anaEkrn(){
         return "giris";
     }
+
     @GetMapping(value = "/kayitol")
-    public String kayitolekranac(){
+    public String kayitolekranac() {
         return "kayitol";
+    }
+
+    @GetMapping(value = "/anasayfa")
+    public String anasayfaekranac(){
+        return "anasayfa";
     }
 
 }

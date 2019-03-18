@@ -1,41 +1,95 @@
-.notice {
-    padding: 15px;
-    background-color: #fafafa;
-    border-left: 6px solid #7f7f84;
-    margin-bottom: 10px;
-    -webkit-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
-    -moz-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
-    box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+.cardboyut{
+    height: auto;
+    margin-left: 250px;
+    margin-right: 250px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    background: darkgrey;
 }
-.notice-sm {
-    padding: 10px;
-    font-size: 80%;
+
+.cevaplar{
+    background: darkgrey;
 }
-.notice-lg {
-    padding: 35px;
-    font-size: large;
+
+.cardarasibosluk{
+    margin-top: 75px;
 }
-.notice-success {
-    border-color: #80D651;
+
+.funkyradio div {
+    clear: both;
+    overflow: hidden;
 }
-.notice-success>strong {
-    color: #80D651;
+
+.funkyradio label {
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid #D1D3D4;
+    font-weight: normal;
 }
-.notice-info {
-    border-color: #45ABCD;
+
+.funkyradio input[type="radio"]:empty{
+    display: none;
 }
-.notice-info>strong {
-    color: #45ABCD;
+
+.funkyradio input[type="radio"]:empty ~ label {
+    position: relative;
+    line-height: 2.5em;
+    text-indent: 3.25em;
+    margin-top: 1em;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
-.notice-warning {
-    border-color: #FEAF20;
+
+.funkyradio input[type="radio"]:empty ~ label:before {
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    content: '';
+    width: 2.5em;
+    background: #e0e0e0;
+    border-radius: 3px 0 0 3px;
 }
-.notice-warning>strong {
-    color: #FEAF20;
+
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label{
+    color: #888;
 }
-.notice-danger {
-    border-color: #d73814;
+
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before{
+    content: '\f111 ';
+    font-family: "Font Awesome 5 Free";
+    font-weight: bold;
+    text-indent: .9em;
+    color: #C2C2C2;
 }
-.notice-danger>strong {
-    color: #d73814;
+
+.funkyradio input[type="radio"]:checked ~ label{
+    color: #777;
+}
+
+.funkyradio input[type="radio"]:checked ~ label:before{
+    content: '\f111 ';
+    font-family: "Font Awesome 5 Free";
+    text-indent: .9em;
+    color: #333;
+    background-color: #ccc;
+}
+
+.funkyradio input[type="radio"]:focus ~ label:before,
+.funkyradio input[type="checkbox"]:focus ~ label:before {
+    box-shadow: 0 0 0 3px #999;
+}
+
+.funkyradio-success input[type="radio"]:checked ~ label{
+    color: #fff;
+    background-color: #5cb85c;
+}
+.funkyradio-success input[type="radio"]:checked ~ label:before{
+    color: #fff;
+    background-color: #5cb85c;
 }
