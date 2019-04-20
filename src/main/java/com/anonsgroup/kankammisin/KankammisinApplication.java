@@ -10,4 +10,5 @@ public class KankammisinApplication {
         SpringApplication.run(KankammisinApplication.class, args);
     }
 
+
 }

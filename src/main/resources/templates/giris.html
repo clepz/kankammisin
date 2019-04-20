@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Login Page</title>
-    <!--Made with love by Mutiullah Samim -->
 
     <meta charset="UTF-8">
+    <title>Giriş Yap</title>
     <!--Bootsrap 4 CDN-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <!--Fontawesome CDN-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="webjars/vue/2.5.16/vue.js"></script>
+    <script src="webjars/jquery/3.3.1-2/jquery.min.js"></script>
     <!--Custom styles-->
     <link th:href="@{css/styles.css}" href="/static/css/styles.css"
           rel="stylesheet" type="text/css" media="screen"/>
 </head>
-<body background="/images/friends.jpg">
+<body background= "/images/friends.jpg"/>
 <div class="container" id="app">
     <div class="d-flex justify-content-center h-100">
         <div class="cardgiris">
@@ -24,7 +23,7 @@
                 <h3>Giriş Yap</h3>
             </div>
             <div class="card-body">
-                <form method="get" action="/kayitol">
+                <form method="get" action="/">
 
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
@@ -49,16 +48,16 @@
             </div>
             <div class="card-footer">
                 <div class="d-flex justify-content-center links">
-                    Hala hesabın yok mu?<a href="#">Kayıt Ol</a>
+                    Hala hesabın yok mu?<a href="/kayitol">Kayıt Ol</a>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <a href="#">Kanka şifremi unuttum</a>
+                    <a href="#">Kanka şifremi</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<script type="application/javascript" th:src="@{js/deneme.js}" src="/static/js/giris.js"></script>
+<script type="application/javascript" th:src="@{js/giris.js}" src="/static/js/giris.js"></script>
 </body>
 </html>
