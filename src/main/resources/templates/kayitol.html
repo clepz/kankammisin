@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -24,40 +25,40 @@
                 <h3>Sign In</h3>
             </div>
             <div class="card-body">
-                <form>
+                <form th:action="@{/kayitol}" th:object="${kullaniciForm}" method="post">
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="kullanıcı adı">
+                        <input type="text" name="username" class="form-control" placeholder="kullanıcı adı">
 
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="adı">
+                        <input type="text" name="isim" class="form-control" placeholder="adı">
 
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="soyadı">
+                        <input type="text" name="soyisim" class="form-control" placeholder="soyadı">
 
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="email">
+                        <input type="text" name="mail" class="form-control" placeholder="email">
 
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" class="form-control" placeholder="şifre">
+                        <input type="password" name="parola" class="form-control" placeholder="şifre">
                     </div>
                     <div class="row align-items-center remember">
                         <input type="checkbox">Remember Me

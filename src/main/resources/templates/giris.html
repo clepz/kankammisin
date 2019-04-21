@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 
     <meta charset="UTF-8">
@@ -22,21 +25,22 @@
             <div class="card-header">
                 <h3>Giriş Yap</h3>
             </div>
+            <span style="color: #d73814" th:if="${param.error}">Kullanıcı adı veya şifre yanlış</span>
             <div class="card-body">
-                <form method="get" action="/">
+                <form method="post" th:action="@{/login}">
 
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="email veya kullanıcı adı">
+                        <input type="text" name="username" class="form-control" placeholder="email veya kullanıcı adı">
 
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" class="form-control" placeholder="şifre">
+                        <input type="password" name="password" class="form-control" placeholder="parola">
                     </div>
                     <div class="row align-items-center remember">
                         <input type="checkbox">Beni hatırla
