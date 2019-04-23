@@ -60,9 +60,4 @@ public class KullaniciController {
         return "giris";
     }
 
-    @GetMapping({"/", "/anasayfa"})
-    public String anasayfa(Model model) {
-        return "anasayfa";
-    }
-
 }
