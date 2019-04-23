@@ -31,7 +31,7 @@ HELP.md
 .recommenders
 .settings
 .springBeans
-/src/main/resources/application.properties
+application.properties
 /build
 /code
 MANIFEST.MF
