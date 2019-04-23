@@ -1,102 +1,11 @@
 <!DOCTYPE html>
 <html lang="tr" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>Ana Sayfa</title>
-    <div th:replace="fragments/bootstraplinks :: baglanti" ></div>
-    <link th:href="@{css/anasayfa.css}" href="/static/css/anasayfa.css"
-          rel="stylesheet" type="text/css" media="screen"/>
+
 </head>
 <body background="/images/friends.jpg">
-<div>
-    <nav class="navbar navbar-expand-lg container navbar-light bg-light col-4">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Testlerim<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Test Oluştur<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Profil</a>
-            </ul>
-        </div>
-    </nav>
 
-    <div th:each="message : ${soruList}">   <tr >
-        <td th:text="${message.getSoru()}">1</td>
-        <td><a href="#" th:text="${message.getBaslik()}">Title ...</a></td>
-        <td th:text="${message.getSoruId()}">Text ...</td>
-    </tr>
-    </div>
-
-    <div class="card  cardboyut cardarasibosluk" >
-        <div class="card-header">
-            <h5 class="card-title col-9">
-                <label class="switch col-1">
-                    <input type="checkbox" class="primary">
-                    <span class="slider round"></span>
-                </label>Nasıl filmlerden hoşlanırım?</h5>
-        </div>
-        <div class="card-bod container">
-            <div class="funkyradio row">
-                <div class="funkyradio-success col" >
-                    <input type="radio" name="radio" id="radio1" />
-                    <label for="radio1">macera</label>
-                </div>
-                <div class="funkyradio-success col" >
-                    <input type="radio" name="radio" id="radio2" />
-                    <label for="radio2">aşk</label>
-                </div>
-                <div class="w-100"></div>
-                <div class="funkyradio-success col" >
-                    <input type="radio" name="radio" id="radio3" />
-                    <label for="radio3">gerilim</label>
-                </div>
-                <div class="funkyradio-success col" >
-                    <input type="radio" name="radio" id="radio4" />
-                    <label for="radio4">bilim-kurgu</label>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
-    <div class="card  cardboyut cardarasibosluk" >
-        <div class="card-header">
-            <h5 class="card-title">En sevdiğim içecek nedir</h5>
-        </div>
-        <div class="card-bod container">
-            <div class="funkyradio row">
-                <div class="funkyradio-success col" >
-                    <input type="radio" name="radio2.soru" id="radio5" />
-                    <label for="radio5">kola</label>
-                </div>
-                <div class="funkyradio-success col" >
-                    <input type="radio" name="radio2.soru" id="radio6" />
-                    <label for="radio6">ayran</label>
-                </div>
-                <div class="w-100"></div>
-                <div class="funkyradio-success col" >
-                    <input type="radio" name="radio2.soru" id="radio7" />
-                    <label for="radio7">süt</label>
-                </div>
-                <div class="funkyradio-success col" >
-                    <input type="radio" name="radio2.soru" id="radio8" />
-                    <label for="radio8">vişne suyu</label>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
-</div>
 </body>
 </html>
