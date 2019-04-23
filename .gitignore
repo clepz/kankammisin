@@ -31,7 +31,7 @@ HELP.md
 .recommenders
 .settings
 .springBeans
-application.properties
+:~/IdeaProjects/kankammisin/src/main/resources/application.properties
 /build
 /code
 MANIFEST.MF
