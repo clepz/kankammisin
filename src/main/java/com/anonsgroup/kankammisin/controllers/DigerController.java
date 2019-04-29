@@ -54,4 +54,7 @@ public class DigerController {
         return "soruekle";
     }
 
+    @GetMapping("/testolustur")
+    public String testolustur() { return "testolustur";}
+
 }
