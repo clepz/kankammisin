@@ -1,4 +1,26 @@
 <div th:fragment="navbar" th:remove="tag" >
-
-
+    <nav class="navbar navbar-expand-lg container navbar-light bg-light col-4">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active col-lg-3">
+                    <a class="nav-link" href="/">Anasayfa<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active col-lg-3">
+                    <a class="nav-link" href="#">Testlerim<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active col-lg-3">
+                    <a class="nav-link" href="/testolustur">Test Oluştur<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active col-lg-3">
+                    <a class="nav-link" href="#">Profil</a>
+                </li>
+                <li class="nav-item active col-lg-3 align-self-end">
+                    <a class="nav-link" href="#">Çıkış Yap</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </div>

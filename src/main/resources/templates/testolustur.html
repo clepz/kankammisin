@@ -5,31 +5,14 @@
     <meta charset="UTF-8">
     <title>Ana Sayfa</title>
     <div th:replace="fragments/bootstraplinks :: baglanti" ></div>
-    <link th:href="@{css/anasayfa.css}" href="/static/css/anasayfa.css"
+    <link th:href="@{css/testolustur.css}" href="/static/css/testolustur.css"
           rel="stylesheet" type="text/css" media="screen"/>
     <link th:href="@{css/diger.css}" href="/static/css/diger.css"
           rel="stylesheet" type="text/css" media="screen"/>
 </head>
 <body background="/images/friends.jpg">
 <div>
-    <nav class="navbar navbar-expand-lg container navbar-light bg-light col-4">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Testlerim<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Test Oluştur<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Profil</a>
-            </ul>
-        </div>
-    </nav>
-
+    <div th:replace="fragments/nav :: navbar" ></div>
     <div th:each="message : ${soruList}">   <tr >
         <td th:text="${message.getSoru()}">1</td>
         <td><a href="#" th:text="${message.getBaslik()}">Title ...</a></td>
