@@ -10,8 +10,8 @@
     <link th:href="@{css/diger.css}" href="/static/css/diger.css"
           rel="stylesheet" type="text/css" media="screen"/>
 </head>
-<body background="/images/friends.jpg">
-<div>
+<body background="/images/friends.jpg" style="background-attachment: fixed">
+<div id="app">
     <nav class="navbar navbar-expand-lg container navbar-light bg-light col-4">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -30,49 +30,50 @@
         </div>
     </nav>
 
-    <div th:each="message : ${soruList}">   <tr >
-        <td th:text="${message.getSoru()}">1</td>
-        <td><a href="#" th:text="${message.getBaslik()}">Title ...</a></td>
-        <td th:text="${message.getSoruId()}">Text ...</td>
-    </tr>
-    </div>
 
-    <div class="card  cardboyut cardarasibosluk" >
+
+
+    <div>{{ seciliSorular }}</div>
+    <form action="#" th:action="@{/testolustur}" method="post">
+    <div id="sorular"  th:each="message : ${sorular}" class="card  cardboyut cardarasibosluk" >
         <div class="card-header">
             <h5 class="card-title col-9">
                 <label class="switch">
-                    <input type="checkbox">
+                    <input type="checkbox" name="soruId" th:value="${message.getSoruId()}" v-model="seciliSorular">
                     <span class="slider"></span>
                 </label>
-
-                Nasıl filmlerden hoşlanırım?</h5>
+                <span th:text="${message.getSoru()}"></span>
+            </h5>
         </div>
         <div class="card-bod container">
             <div class="funkyradio row">
                 <div class="funkyradio-success col" >
-                    <input type="radio" name="radio" id="radio1" />
-                    <label for="radio1">macera</label>
+                    <input type="radio" name="dogruCevap" th:id="${message.getSoruId()}+${message.getCevap1()}" th:value="${message.getCevap1()}" />
+                    <label th:text="${message.getCevap1()}" th:for="${message.getSoruId()}+${message.getCevap1()}"></label>
                 </div>
                 <div class="funkyradio-success col" >
-                    <input type="radio" name="radio" id="radio2" />
-                    <label for="radio2">aşk</label>
+                    <input type="radio" th:value="${message.getCevap2()}" th:name="${message.getDogruCevap()}" th:id="${message.getSoruId()}+${message.getCevap2()}" />
+                    <label th:text="${message.getCevap2()}"  th:for="${message.getSoruId()}+${message.getCevap2()}"></label>
                 </div>
                 <div class="w-100"></div>
                 <div class="funkyradio-success col" >
-                    <input type="radio" name="radio" id="radio3" />
-                    <label for="radio3">gerilim</label>
+                    <input type="radio" th:name="${message.getDogruCevap()}" th:id="${message.getSoruId()}+${message.getCevap3()}"  th:value="${message.getCevap3()}"/>
+                    <label th:text="${message.getCevap3()}"  th:for="${message.getSoruId()}+${message.getCevap3()}"></label>
                 </div>
                 <div class="funkyradio-success col" >
-                    <input type="radio" name="radio" id="radio4" />
-                    <label for="radio4">bilim-kurgu</label>
+                    <input type="radio" th:name="${message.getDogruCevap()}" th:id="${message.getSoruId()}+${message.getCevap4()}"  th:value="${message.getCevap4()}"/>
+                    <label th:text="${message.getCevap4()}"  th:for="${message.getSoruId()}+${message.getCevap4()}"></label>
                 </div>
 
             </div>
 
         </div>
-    </div>
+        </div>
+        <input type="submit" value="BASSSS" name="bas"/>
+    </form>
 
-    <div class="card  cardboyut cardarasibosluk" >
+
+   <!-- <div class="card  cardboyut cardarasibosluk" >
         <div class="card-header">
             <h5 class="card-title">En sevdiğim içecek nedir</h5>
         </div>
@@ -100,7 +101,24 @@
 
         </div>
     </div>
-
+-->
 </div>
+
+<script>
+
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            seciliSorular: [],
+            seciliCevaplar: []
+        },
+        methods: {
+
+        }
+    });
+
+</script>
+
 </body>
 </html>

@@ -2,8 +2,10 @@ package com.anonsgroup.kankammisin.controllers;
 
 import com.anonsgroup.kankammisin.model.Kategori;
 import com.anonsgroup.kankammisin.model.Soru;
+import com.anonsgroup.kankammisin.model.TestOlusturForm;
 import com.anonsgroup.kankammisin.repositories.KategoriRepository;
 import com.anonsgroup.kankammisin.repositories.SoruRepository;
+import com.anonsgroup.kankammisin.repositories.UserRepository;
 import com.anonsgroup.kankammisin.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,8 @@ public class DigerController {
 
     @Autowired
     private KategoriRepository kategoriRepository;
+    @Autowired
+    private UserRepository userRepository;
 
 
     @Autowired
@@ -55,6 +59,28 @@ public class DigerController {
     }
 
     @GetMapping("/testolustur")
-    public String testolustur() { return "testolustur";}
+    public ModelAndView testolustur() {
+        ModelAndView modelAndView = new ModelAndView("testolustur");
+        List<Soru> sorular  = soruRepository.findByUser(userRepository.findById(0));
+        modelAndView.addObject("sorular",sorular);
+
+        TestOlusturForm testOlusturForm = new TestOlusturForm();
+
+        testOlusturForm.addSoru(new Soru());
+
+        modelAndView.addObject("form",testOlusturForm);
+
+        return modelAndView;
+    }
+
+    @PostMapping("/testolustur")
+    public String testolusturPost(@ModelAttribute("form") TestOlusturForm form, Model model ){
+        if(form.getFormList() != null)
+        for (Soru soru : form.getFormList()) {
+            if(soru != null)
+            System.out.println(soru.getSoru());
+        }
+        return "testolustur";
+    }
 
 }
