@@ -10,18 +10,9 @@
     <link th:href="@{css/diger.css}" href="/static/css/diger.css"
           rel="stylesheet" type="text/css" media="screen"/>
 </head>
-<body background="/images/friends.jpg">
-<div>
-    <div th:replace="fragments/nav :: navbar" ></div>
-    <div th:each="message : ${soruList}">   <tr >
-        <td th:text="${message.getSoru()}">1</td>
-        <td><a href="#" th:text="${message.getBaslik()}">Title ...</a></td>
-        <td th:text="${message.getSoruId()}">Text ...</td>
-    </tr>
-    </div>
-
-    <div class="card  cardboyut cardarasibosluk" >
 <body background="/images/friends.jpg" style="background-attachment: fixed">
+    <div th:replace="fragments/nav :: navbar" ></div>
+
 <div id="app">
 
     <div>{{ seciliSorular }}</div>
@@ -74,7 +65,6 @@
         <input type="submit" value="BASSSS" name="bas"/>
 
     </form>
-
 
    <!-- <div class="card  cardboyut cardarasibosluk" >
         <div class="card-header">
