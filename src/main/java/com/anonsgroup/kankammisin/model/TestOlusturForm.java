@@ -1,15 +1,15 @@
 package com.anonsgroup.kankammisin.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class TestOlusturForm {
-    private ArrayList<Soru> formList;
+    private List<Soru> formList;
 
-    public ArrayList<Soru> getFormList() {
+    public List<Soru> getFormList() {
         return formList;
     }
 
-    public void setFormList(ArrayList<Soru> formList) {
+    public void setFormList(List<Soru> formList) {
         this.formList = formList;
     }
 

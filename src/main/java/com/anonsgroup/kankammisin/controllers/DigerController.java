@@ -1,20 +1,22 @@
 package com.anonsgroup.kankammisin.controllers;
 
-import com.anonsgroup.kankammisin.model.Kategori;
-import com.anonsgroup.kankammisin.model.Soru;
-import com.anonsgroup.kankammisin.model.TestOlusturForm;
+import com.anonsgroup.kankammisin.Conventers.StringToKategori;
+import com.anonsgroup.kankammisin.Conventers.StringToUser;
+import com.anonsgroup.kankammisin.model.*;
 import com.anonsgroup.kankammisin.repositories.KategoriRepository;
 import com.anonsgroup.kankammisin.repositories.SoruRepository;
+import com.anonsgroup.kankammisin.repositories.TestRepository;
 import com.anonsgroup.kankammisin.repositories.UserRepository;
 import com.anonsgroup.kankammisin.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -27,6 +29,9 @@ public class DigerController {
     private KategoriRepository kategoriRepository;
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private TestRepository testRepository;
 
 
     @Autowired
@@ -59,28 +64,33 @@ public class DigerController {
     }
 
     @GetMapping("/testolustur")
-    public ModelAndView testolustur() {
+    public ModelAndView testolustur(Model model,boolean basarili) {
         ModelAndView modelAndView = new ModelAndView("testolustur");
+        if(basarili){
+            modelAndView.addObject("basarili",true);
+        }
         List<Soru> sorular  = soruRepository.findByUser(userRepository.findById(0));
-        modelAndView.addObject("sorular",sorular);
-
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        Long id = userRepository.findByUsername(username).getId();
         TestOlusturForm testOlusturForm = new TestOlusturForm();
 
-        testOlusturForm.addSoru(new Soru());
-
+        testOlusturForm.setFormList(sorular);
+        modelAndView.addObject("test",new Test());
         modelAndView.addObject("form",testOlusturForm);
-
+        modelAndView.addObject("kisiId", id);
         return modelAndView;
     }
 
     @PostMapping("/testolustur")
-    public String testolusturPost(@ModelAttribute("form") TestOlusturForm form, Model model ){
-        if(form.getFormList() != null)
-        for (Soru soru : form.getFormList()) {
-            if(soru != null)
-            System.out.println(soru.getSoru());
-        }
-        return "testolustur";
+    public String testolusturPost(@ModelAttribute("form") TestOlusturForm form,@ModelAttribute("test") Test test){
+        testRepository.save(test);
+        String param = ""+test.getTestId()+"+"+test.getKimin().getUsername();
+        test.setTestLinki("/test?link="+param);
+        testRepository.save(test);
+        System.out.println(test.getTestId());
+        form.getFormList().forEach(soru -> {soru.setTest(test); soruRepository.save(soru);});
+        return "redirect:/testolustur?basarili="+true ;
     }
 
 }

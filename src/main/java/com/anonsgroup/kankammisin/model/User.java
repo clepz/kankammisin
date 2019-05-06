@@ -2,6 +2,7 @@ package com.anonsgroup.kankammisin.model;
 
 
 import lombok.*;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -17,6 +18,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter @Setter private long id;
 
+    @UniqueElements
     @Getter @Setter private String username;
 
     @Getter @Setter private String parola;

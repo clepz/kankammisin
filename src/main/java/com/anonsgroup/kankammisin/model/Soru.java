@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Arrays;
 
 @Entity
 @Table(name = "sorular")
@@ -34,6 +35,10 @@ public class Soru {
     @ManyToOne(fetch = FetchType.LAZY)
     @Getter @Setter
     private User user;
+
+    @Getter @Setter
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Test test;
 
     @Override
     public String toString() {

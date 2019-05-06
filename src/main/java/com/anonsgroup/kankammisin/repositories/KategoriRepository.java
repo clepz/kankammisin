@@ -8,5 +8,6 @@ import java.util.List;
 public interface KategoriRepository extends JpaRepository<Kategori,Integer> {
 
     List<Kategori> findAll();
+    Kategori findByKategoriId(int id);
 
 }

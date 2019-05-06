@@ -33,43 +33,57 @@
 
 
 
+
+
     <div>{{ seciliSorular }}</div>
-    <form action="#" th:action="@{/testolustur}" method="post">
-    <div id="sorular"  th:each="message : ${sorular}" class="card  cardboyut cardarasibosluk" >
+    <form action="#" th:action="@{/testolustur}" th:object="${form}"  method="post">
+        <div class="row container">
+            <div class="col-md-2 col-md-offset-5" th:object="${test}">
+                <input type="text" class="form-control" aria-label="Default" name="testAdi" th:value="${test.testAdi}" aria-describedby="inputGroup-sizing-default">
+                <input hidden th:name="kimin" th:value="${{kisiId}}">
+            </div>
+        </div>
+    <div id="sorular"  th:each="formList, itemStat : ${form.getFormList()}" class="card  cardboyut cardarasibosluk" >
         <div class="card-header">
             <h5 class="card-title col-9">
                 <label class="switch">
-                    <input type="checkbox" name="soruId" th:value="${message.getSoruId()}" v-model="seciliSorular">
+                    <input type="checkbox" th:name="|formList[${itemStat.index}].soruId|" th:value="${formList.getSoruId()}" v-model="seciliSorular">
                     <span class="slider"></span>
                 </label>
-                <span th:text="${message.getSoru()}"></span>
+                <input hidden th:name="|formList[${itemStat.index}].soru|" th:value="${formList.getSoru()}" />
+                <span th:text="${formList.getSoru()}"></span>
             </h5>
         </div>
         <div class="card-bod container">
             <div class="funkyradio row">
                 <div class="funkyradio-success col" >
-                    <input type="radio" name="dogruCevap" th:id="${message.getSoruId()}+${message.getCevap1()}" th:value="${message.getCevap1()}" />
-                    <label th:text="${message.getCevap1()}" th:for="${message.getSoruId()}+${message.getCevap1()}"></label>
+                    <input type="radio" th:name="|formList[${itemStat.index}].dogruCevap|" th:value="${formList.getCevap1()}" th:id="${formList.getSoruId()}+${formList.getCevap1()}" />
+                    <input hidden th:name="|formList[${itemStat.index}].cevap1|" th:value="${formList.getCevap1()}" />
+                    <label th:text="${formList.getCevap1()}" th:for="${formList.getSoruId()}+${formList.getCevap1()}"></label>
                 </div>
                 <div class="funkyradio-success col" >
-                    <input type="radio" th:value="${message.getCevap2()}" th:name="${message.getDogruCevap()}" th:id="${message.getSoruId()}+${message.getCevap2()}" />
-                    <label th:text="${message.getCevap2()}"  th:for="${message.getSoruId()}+${message.getCevap2()}"></label>
-                </div>
-                <div class="w-100"></div>
-                <div class="funkyradio-success col" >
-                    <input type="radio" th:name="${message.getDogruCevap()}" th:id="${message.getSoruId()}+${message.getCevap3()}"  th:value="${message.getCevap3()}"/>
-                    <label th:text="${message.getCevap3()}"  th:for="${message.getSoruId()}+${message.getCevap3()}"></label>
+                    <input type="radio" th:name="|formList[${itemStat.index}].dogruCevap|" th:value="${formList.getCevap2()}" th:id="${formList.getSoruId()}+${formList.getCevap2()}" />
+                    <input hidden th:name="|formList[${itemStat.index}].cevap2|" th:value="${formList.getCevap2()}" />
+                    <label th:text="${formList.getCevap2()}" th:for="${formList.getSoruId()}+${formList.getCevap2()}"></label>
                 </div>
                 <div class="funkyradio-success col" >
-                    <input type="radio" th:name="${message.getDogruCevap()}" th:id="${message.getSoruId()}+${message.getCevap4()}"  th:value="${message.getCevap4()}"/>
-                    <label th:text="${message.getCevap4()}"  th:for="${message.getSoruId()}+${message.getCevap4()}"></label>
+                    <input type="radio" th:name="|formList[${itemStat.index}].dogruCevap|" th:value="${formList.getCevap3()}" th:id="${formList.getSoruId()}+${formList.getCevap3()}" />
+                    <input hidden th:name="|formList[${itemStat.index}].cevap3|" th:value="${formList.getCevap3()}" />
+                    <label th:text="${formList.getCevap3()}" th:for="${formList.getSoruId()}+${formList.getCevap3()}"></label>
                 </div>
-
+                <div class="funkyradio-success col" >
+                    <input type="radio" th:name="|formList[${itemStat.index}].dogruCevap|" th:value="${formList.getCevap4()}" th:id="${formList.getSoruId()}+${formList.getCevap4()}" />
+                    <input hidden th:name="|formList[${itemStat.index}].cevap4|" th:value="${formList.getCevap4()}" />
+                    <label th:text="${formList.getCevap4()}" th:for="${formList.getSoruId()}+${formList.getCevap4()}"></label>
+                </div>
             </div>
-
+            <input hidden th:name="|formList[${itemStat.index}].baslik|" th:value="${formList.getBaslik()}" />
+            <input hidden th:name="|formList[${itemStat.index}].kategori|" th:value="${formList.getKategori().getKategoriId()}" >
+            <input hidden th:name="|formList[${itemStat.index}].user|" th:value="${{kisiId}}" />
         </div>
         </div>
         <input type="submit" value="BASSSS" name="bas"/>
+
     </form>
 
 
@@ -80,20 +94,20 @@
         <div class="card-bod container">
             <div class="funkyradio row">
                 <div class="funkyradio-success col" >
-                    <input type="radio" name="radio2.soru" id="radio5" />
+                    <input type="radio" name="radio2.formList" id="radio5" />
                     <label for="radio5">kola</label>
                 </div>
                 <div class="funkyradio-success col" >
-                    <input type="radio" name="radio2.soru" id="radio6" />
+                    <input type="radio" name="radio2.formList" id="radio6" />
                     <label for="radio6">ayran</label>
                 </div>
                 <div class="w-100"></div>
                 <div class="funkyradio-success col" >
-                    <input type="radio" name="radio2.soru" id="radio7" />
+                    <input type="radio" name="radio2.formList" id="radio7" />
                     <label for="radio7">süt</label>
                 </div>
                 <div class="funkyradio-success col" >
-                    <input type="radio" name="radio2.soru" id="radio8" />
+                    <input type="radio" name="radio2.formList" id="radio8" />
                     <label for="radio8">vişne suyu</label>
                 </div>
 
@@ -104,6 +118,14 @@
 -->
 </div>
 
+<script th:inline="javascript">
+
+    if([[${basarili}]]){
+        alert("test oluşturuldu");
+    }
+
+</script>
+
 <script>
 
 
@@ -111,11 +133,17 @@
         el: '#app',
         data: {
             seciliSorular: [],
-            seciliCevaplar: []
+            seciliCevaplar: [],
+            kategoriId: 0,
+            userId: 0
         },
         methods: {
 
-        }
+        }/*,
+        created: function () {
+            // `this` points to the vm instance
+            console.log('a is: ')
+        }*/
     });
 
 </script>
