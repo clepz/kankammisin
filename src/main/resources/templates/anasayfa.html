@@ -3,9 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Ana Sayfa</title>
-
+    <div th:replace="fragments/bootstraplinks :: baglanti" ></div>
+    <div th:replace="fragments/nav :: navbar" ></div>
+    <link th:href="@{css/anasayfa.css}" href="/static/css/anasayfa.css"
+          rel="stylesheet" type="text/css" media="screen"/>
 </head>
 <body background="/images/friends.jpg">
+<table class="table tabloboyut">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Kullanıcı Adı</th>
+        <th scope="col">Doğru Cevaplar</th>
+        <th scope="col">Yanlış Cevaplar</th>
+        <th scope="col">Kankalık Seviyesi</th>
 
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">1</th>
+        <td>sero</td>
+        <td>10</td>
+        <td>5</td>
+        <td>bff</td>
+    </tr>
+    <tr>
+        <th scope="row">1</th>
+        <td>haso</td>
+        <td>10</td>
+        <td>3</td>
+        <td>kankam</td>
+    </tr>
+    <tr>
+        <th scope="row">1</th>
+        <td>tıro</td>
+        <td>10</td>
+        <td>2</td>
+        <td>sırdas</td>
+    </tr>
+    <tr>
+        <th scope="row">1</th>
+        <td>aşkın</td>
+        <td>12</td>
+        <td>5</td>
+        <td>öylesine arkadaş</td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
