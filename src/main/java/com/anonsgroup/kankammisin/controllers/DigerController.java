@@ -85,12 +85,25 @@ public class DigerController {
     @PostMapping("/testolustur")
     public String testolusturPost(@ModelAttribute("form") TestOlusturForm form,@ModelAttribute("test") Test test){
         testRepository.save(test);
+
         String param = ""+test.getTestId()+"+"+test.getKimin().getUsername();
         test.setTestLinki("/test?link="+param);
         testRepository.save(test);
         System.out.println(test.getTestId());
-        form.getFormList().forEach(soru -> {soru.setTest(test); soruRepository.save(soru);});
+        form.getFormList().forEach(soru -> {
+            System.out.println(soru.getSoruId());
+            if(soru.getSoruId() != 0) {
+                soru.setSoruId(0);
+                soru.setTest(test);
+                soruRepository.save(soru);
+            }
+            });
         return "redirect:/testolustur?basarili="+true ;
+    }
+
+    @GetMapping("/testlerim")
+    public String testlerim() {
+        return "testlerim";
     }
 
 }

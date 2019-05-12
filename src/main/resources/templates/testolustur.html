@@ -16,7 +16,7 @@
 <div id="app">
 
     <div>{{ seciliSorular }}</div>
-    <form action="#" th:action="@{/testolustur}" th:object="${form}"  method="post">
+    <form id="formDiv" action="#" th:action="@{/testolustur}" th:object="${form}" onsubmit="return sub()"  method="post">
         <div class="row container">
             <div class="col-md-2 col-md-offset-5" th:object="${test}">
                 <input type="text" class="form-control" aria-label="Default" name="testAdi" th:value="${test.testAdi}" aria-describedby="inputGroup-sizing-default">
@@ -27,10 +27,10 @@
         <div class="card-header">
             <h5 class="card-title col-9">
                 <label class="switch">
-                    <input type="checkbox" th:name="|formList[${itemStat.index}].soruId|" th:value="${formList.getSoruId()}" v-model="seciliSorular">
+                    <input type="checkbox" th:name="|formList[${itemStat.index}].getSoruId|" onchange="sayi(this)" th:value="${formList.getSoruId()}" v-model="seciliSorular">
                     <span class="slider"></span>
                 </label>
-                <input hidden th:name="|formList[${itemStat.index}].soru|" th:value="${formList.getSoru()}" />
+                <input hidden th:name="|formList[${itemStat.index}].soru|" th:value="${formList.getSoru()}"/>
                 <span th:text="${formList.getSoru()}"></span>
             </h5>
         </div>
@@ -62,10 +62,10 @@
             <input hidden th:name="|formList[${itemStat.index}].user|" th:value="${{kisiId}}" />
         </div>
         </div>
-        <input type="submit" value="BASSSS" name="bas"/>
+        <input type="submit" value="BASSSS"      name="bas"/>
 
     </form>
-
+    <button onclick="soruEkle()" >Soru Ekle</button>
    <!-- <div class="card  cardboyut cardarasibosluk" >
         <div class="card-header">
             <h5 class="card-title">En sevdiğim içecek nedir</h5>
@@ -99,13 +99,75 @@
 
 <script th:inline="javascript">
 
+</script>
+
+
+<script th:inline="javascript">
+
     if([[${basarili}]]){
         alert("test oluşturuldu");
     }
 
-</script>
+    var kisiId = [[${kisiId}]]
 
-<script>
+    var secilen = 0;
+    var yeniSoru = 4;
+
+    function sub(event) {
+
+        if(secilen<15 || secilen > 15){
+            alert("15 soru seçmelisiniz.");
+            return true;
+        }
+        return true;
+    }
+
+    function sayi(event) {
+        if(event.checked){
+            secilen++;
+        }
+        else{
+            secilen--;
+        }
+    }
+
+    function soruEkle() {
+        yeniSoru++;
+        secilen++;
+        $("#formDiv").append(" <div id=\"sorular\" class=\"card  cardboyut cardarasibosluk\" >" +
+            "        <div class=\"card-header\">" +
+            "            <h5 class=\"card-title col-9\">" +
+            "                <label class=\"switch\">" +
+            "                    <input hidden type='number' name='formList["+yeniSoru+"].soruId' value='1'>" +
+            "                    <span class=\"slider\"></span>" +
+            "                </label>" +
+            "                <input type='text' placeholder='Soru' name='formList["+ yeniSoru +"].soru' />"+
+            "            </h5>" +
+            "        </div>" +
+            "        <div class=\"card-bod container\">" +
+            "            <div class=\"funkyradio row\">" +
+            "                <div class=\"funkyradio-success col\" >" +
+            "                    <input type=\"radio\" name='formList["+ yeniSoru +"].dogruCevap' id='den"+yeniSoru+"1' />" +
+                "<label for='den"+yeniSoru+"1'> <input type='text' name='formList["+ yeniSoru +"].cevap1' placeholder='cevap1'/> </label>" +
+            "                </div>" +
+            "                <div class=\"funkyradio-success col\" >" +
+            "                    <input type=\"radio\" name='formList["+ yeniSoru +"].dogruCevap' id='den"+yeniSoru+"2' />" +
+            "<label for='den"+yeniSoru+"2'> <input type='text' name='formList["+ yeniSoru +"].cevap2' placeholder='cevap2'/> </label>" +
+        "                </div>" +
+            "                <div class=\"funkyradio-success col\" >" +
+            "                    <input type=\"radio\" name='formList["+ yeniSoru +"].dogruCevap' id='den"+yeniSoru+"3' />" +
+            "<label for='den"+yeniSoru+"3'> <input type='text' name='formList["+ yeniSoru +"].cevap3' placeholder='cevap3'/> </label>" +        "                </div>" +
+            "                <div class=\"funkyradio-success col\" >" +
+            "                    <input type=\"radio\" name='formList["+ yeniSoru +"].dogruCevap' id='den"+yeniSoru+"4' />" +
+            "<label for='den"+yeniSoru+"4'> <input type='text' name='formList["+ yeniSoru +"].cevap4' placeholder='cevap4'/> </label>" +        "                </div>" +
+            "            </div>" +
+            "            <input name='formList["+yeniSoru+"].baslik' placeholder='baslik' />" +
+            "            <input name='formList["+ yeniSoru +"].kategori' placeholder='kategori' />" +
+            "            <input hidden name='formList["+yeniSoru+"].user' value="+kisiId+" />" +
+            "        </div>" +
+            "        </div>");
+
+    }
 
 
     var app = new Vue({
@@ -118,7 +180,9 @@
         },
         methods: {
 
-        }/*,
+        }
+
+        /*,
         created: function () {
             // `this` points to the vm instance
             console.log('a is: ')
