@@ -95,3 +95,23 @@
     color: #fff;
     background-color: #5cb85c;
 }
+
+.testolusturbtn{
+    border-radius: 50px;
+    background: #5cb85c;
+    margin-left: 12%;
+}
+
+.testadiedittext{
+    border-radius: 50px;
+    background: lightgoldenrodyellow;
+    width: 200px;
+}
+.testolusturDiv{
+    margin-left: 30%;
+    margin-top: 40px;
+}
+.secilisorulardiv{
+    margin-left: 45%;
+    margin-top: 25px;
+}
