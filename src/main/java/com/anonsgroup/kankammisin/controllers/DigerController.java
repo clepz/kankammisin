@@ -57,6 +57,8 @@ public class DigerController {
         return "soruekle";
     }
 
+
+
     @PostMapping("/soruekle")
     public String soruEkleIslem(@ModelAttribute("soru") Soru soru){
         soruRepository.save(soru);
@@ -105,5 +107,9 @@ public class DigerController {
     public String testlerim() {
         return "testlerim";
     }
+
+
+    @GetMapping("/profil")
+    public String profil(){ return "profil"; }
 
 }

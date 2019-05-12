@@ -115,3 +115,11 @@
     margin-left: 45%;
     margin-top: 25px;
 }
+.sorueklediv{
+    width: 30%;
+    margin-top: 20px;
+    margin-left: 35%;
+    background: #FFC312;
+    border-radius: 50px;
+    height: 40px;
+}
