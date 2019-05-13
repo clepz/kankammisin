@@ -27,7 +27,7 @@
         <div class="card-header">
             <h5 class="card-title col-9">
                 <label class="switch">
-                    <input type="checkbox" th:name="|formList[${itemStat.index}].getSoruId|" onchange="sayi(this)" th:value="${formList.getSoruId()}" v-model="seciliSorular">
+                    <input type="checkbox" th:name="|formList[${itemStat.index}].soruId|" onchange="sayi(this)" th:value="${formList.getSoruId()}" v-model="seciliSorular">
                     <span class="slider"></span>
                 </label>
                 <input hidden th:name="|formList[${itemStat.index}].soru|" th:value="${formList.getSoru()}"/>
@@ -66,41 +66,8 @@
 
     </form>
     <button onclick="soruEkle()" >Soru Ekle</button>
-   <!-- <div class="card  cardboyut cardarasibosluk" >
-        <div class="card-header">
-            <h5 class="card-title">En sevdiğim içecek nedir</h5>
-        </div>
-        <div class="card-bod container">
-            <div class="funkyradio row">
-                <div class="funkyradio-success col" >
-                    <input type="radio" name="radio2.formList" id="radio5" />
-                    <label for="radio5">kola</label>
-                </div>
-                <div class="funkyradio-success col" >
-                    <input type="radio" name="radio2.formList" id="radio6" />
-                    <label for="radio6">ayran</label>
-                </div>
-                <div class="w-100"></div>
-                <div class="funkyradio-success col" >
-                    <input type="radio" name="radio2.formList" id="radio7" />
-                    <label for="radio7">süt</label>
-                </div>
-                <div class="funkyradio-success col" >
-                    <input type="radio" name="radio2.formList" id="radio8" />
-                    <label for="radio8">vişne suyu</label>
-                </div>
 
-            </div>
-
-        </div>
-    </div>
--->
 </div>
-
-<script th:inline="javascript">
-
-</script>
-
 
 <script th:inline="javascript">
 
@@ -117,7 +84,7 @@
 
         if(secilen<15 || secilen > 15){
             alert("15 soru seçmelisiniz.");
-            return true;
+            return false;
         }
         return true;
     }
@@ -131,14 +98,36 @@
         }
     }
 
+    function degerVer(input) {
+
+        var tumid = input.id;
+        var dizi = tumid.split('-');
+        var radio = document.getElementById('den-'+dizi[1]+'-'+dizi[2]);
+        radio.value = input.value;
+
+    }
+
+    function soruSil(elementId) {
+        // Removes an element from the document
+        var tumid = elementId.id;
+        var dizi = tumid.split('-');
+        var element = document.getElementById('sor-'+dizi[1]);
+        element.parentNode.removeChild(element);
+    }
+
     function soruEkle() {
+        if(secilen>15) {
+            alert("yeni soru ekleyemezsiniz");
+            return;
+        }
         yeniSoru++;
         secilen++;
-        $("#formDiv").append(" <div id=\"sorular\" class=\"card  cardboyut cardarasibosluk\" >" +
+        $("#formDiv").append(" <div id='sor-"+yeniSoru+"' class=\"card  cardboyut cardarasibosluk\"'>" +
+            " <button onclick='soruSil(this)' id='but-"+yeniSoru+"'>Sil</button> "+
             "        <div class=\"card-header\">" +
             "            <h5 class=\"card-title col-9\">" +
             "                <label class=\"switch\">" +
-            "                    <input hidden type='number' name='formList["+yeniSoru+"].soruId' value='1'>" +
+            "                    <input checked type='checkbox' name='formList["+yeniSoru+"].soruId' value='1' onchange='sayi(this)'>" +
             "                    <span class=\"slider\"></span>" +
             "                </label>" +
             "                <input type='text' placeholder='Soru' name='formList["+ yeniSoru +"].soru' />"+
@@ -147,20 +136,20 @@
             "        <div class=\"card-bod container\">" +
             "            <div class=\"funkyradio row\">" +
             "                <div class=\"funkyradio-success col\" >" +
-            "                    <input type=\"radio\" name='formList["+ yeniSoru +"].dogruCevap' id='den"+yeniSoru+"1' />" +
-                "<label for='den"+yeniSoru+"1'> <input type='text' name='formList["+ yeniSoru +"].cevap1' placeholder='cevap1'/> </label>" +
+            "                    <input type=\"radio\" name='formList["+ yeniSoru +"].dogruCevap' id='den-"+yeniSoru+"-1' value=''/>" +
+            "                   <label for='den-"+yeniSoru+"-1'> <input type='text' name='formList["+ yeniSoru +"].cevap1' placeholder='cevap1' id='dem-"+yeniSoru+"-1' onkeyup='degerVer(this)'/> </label>" +
             "                </div>" +
             "                <div class=\"funkyradio-success col\" >" +
-            "                    <input type=\"radio\" name='formList["+ yeniSoru +"].dogruCevap' id='den"+yeniSoru+"2' />" +
-            "<label for='den"+yeniSoru+"2'> <input type='text' name='formList["+ yeniSoru +"].cevap2' placeholder='cevap2'/> </label>" +
+            "                    <input type=\"radio\" name='formList["+ yeniSoru +"].dogruCevap' id='den-"+yeniSoru+"-2' />" +
+            "                   <label for='den-"+yeniSoru+"-2'> <input type='text' name='formList["+ yeniSoru +"].cevap2' placeholder='cevap2' id='dem-"+yeniSoru+"-2' onkeyup='degerVer(this)'/> </label>" +
         "                </div>" +
             "                <div class=\"funkyradio-success col\" >" +
-            "                    <input type=\"radio\" name='formList["+ yeniSoru +"].dogruCevap' id='den"+yeniSoru+"3' />" +
-            "<label for='den"+yeniSoru+"3'> <input type='text' name='formList["+ yeniSoru +"].cevap3' placeholder='cevap3'/> </label>" +        "                </div>" +
+            "                    <input type=\"radio\" name='formList["+ yeniSoru +"].dogruCevap' id='den-"+yeniSoru+"-3' />" +
+            "                   <label for='den-"+yeniSoru+"-3'> <input type='text' name='formList["+ yeniSoru +"].cevap3' placeholder='cevap3'id='dem-"+yeniSoru+"-3' onkeyup='degerVer(this)'/> </label>" +        "                </div>" +
             "                <div class=\"funkyradio-success col\" >" +
-            "                    <input type=\"radio\" name='formList["+ yeniSoru +"].dogruCevap' id='den"+yeniSoru+"4' />" +
-            "<label for='den"+yeniSoru+"4'> <input type='text' name='formList["+ yeniSoru +"].cevap4' placeholder='cevap4'/> </label>" +        "                </div>" +
-            "            </div>" +
+            "                    <input type=\"radio\" name='formList["+ yeniSoru +"].dogruCevap' id='den-"+yeniSoru+"-4' /> " +
+            "                   <label for='den-"+yeniSoru+"-4'> <input type='text' name='formList["+ yeniSoru +"].cevap4' placeholder='cevap4'id='dem-"+yeniSoru+"-4' onkeyup='degerVer(this)'/> </label>" +        "                </div>" +
+            "            </div>" + // her label içeriindeki inputlara id eklenecek.
             "            <input name='formList["+yeniSoru+"].baslik' placeholder='baslik' />" +
             "            <input name='formList["+ yeniSoru +"].kategori' placeholder='kategori' />" +
             "            <input hidden name='formList["+yeniSoru+"].user' value="+kisiId+" />" +
@@ -188,6 +177,9 @@
             console.log('a is: ')
         }*/
     });
+
+</script>
+<script>
 
 </script>
 
