@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -20,10 +21,11 @@ public class Test {
 
     @Getter @Setter private String testAdi;
 
-    @ManyToOne()
-    @JoinColumn(name = "id")
+    @ManyToOne
+    @JoinColumn
     @Getter @Setter private User kimin;
 
     @Getter @Setter private String testLinki;
+
 
 }

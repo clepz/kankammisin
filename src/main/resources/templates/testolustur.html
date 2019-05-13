@@ -15,7 +15,6 @@
 
 <div id="app">
 
-    <div>{{ seciliSorular }}</div>
     <form id="formDiv" action="#" th:action="@{/testolustur}" th:object="${form}" onsubmit="return sub()"  method="post">
         <div class="row container">
             <div class="col-md-2 col-md-offset-5" th:object="${test}">
@@ -77,6 +76,7 @@
 
     var kisiId = [[${kisiId}]]
 
+    var kategori;
     var secilen = 0;
     var yeniSoru = 4;
 
@@ -84,7 +84,7 @@
 
         if(secilen<15 || secilen > 15){
             alert("15 soru seçmelisiniz.");
-            return false;
+            return true;
         }
         return true;
     }
@@ -142,7 +142,7 @@
             "                <div class=\"funkyradio-success col\" >" +
             "                    <input type=\"radio\" name='formList["+ yeniSoru +"].dogruCevap' id='den-"+yeniSoru+"-2' />" +
             "                   <label for='den-"+yeniSoru+"-2'> <input type='text' name='formList["+ yeniSoru +"].cevap2' placeholder='cevap2' id='dem-"+yeniSoru+"-2' onkeyup='degerVer(this)'/> </label>" +
-        "                </div>" +
+            "              </div>" +
             "                <div class=\"funkyradio-success col\" >" +
             "                    <input type=\"radio\" name='formList["+ yeniSoru +"].dogruCevap' id='den-"+yeniSoru+"-3' />" +
             "                   <label for='den-"+yeniSoru+"-3'> <input type='text' name='formList["+ yeniSoru +"].cevap3' placeholder='cevap3'id='dem-"+yeniSoru+"-3' onkeyup='degerVer(this)'/> </label>" +        "                </div>" +

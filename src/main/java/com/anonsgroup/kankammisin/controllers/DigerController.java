@@ -57,6 +57,8 @@ public class DigerController {
         return "soruekle";
     }
 
+
+
     @PostMapping("/soruekle")
     public String soruEkleIslem(@ModelAttribute("soru") Soru soru){
         soruRepository.save(soru);
@@ -102,8 +104,18 @@ public class DigerController {
     }
 
     @GetMapping("/testlerim")
-    public String testlerim() {
-        return "testlerim";
+    public ModelAndView testlerim() {
+        ModelAndView modelAndView = new ModelAndView("testlerim");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        Long id = userRepository.findByUsername(username).getId();
+        System.out.println("teslerim" + " " + id);
+        modelAndView.addObject("testler",testRepository.findAllByKimin_Id(id));
+        return modelAndView;
     }
+
+
+    @GetMapping("/profil")
+    public String profil(){ return "profil"; }
 
 }

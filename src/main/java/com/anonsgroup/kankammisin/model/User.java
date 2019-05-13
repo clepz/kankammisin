@@ -33,7 +33,6 @@ public class User {
     @Getter @Setter private Set<Role> roles;
 
     @OneToMany
-    @JoinColumn(name = "soruId")
     @Getter @Setter private Set<Soru> sorularim;
 
 }

@@ -27,8 +27,5 @@ public class Kategori {
 
     @Getter @Setter private String kategoriAdi;
 
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="soruId")
-    @Getter @Setter private Set<Soru> soru;
 
 }
