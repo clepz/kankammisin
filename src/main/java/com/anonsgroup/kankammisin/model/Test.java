@@ -27,5 +27,7 @@ public class Test {
 
     @Getter @Setter private String testLinki;
 
+    @Getter @Setter private String kategori;
+
 
 }

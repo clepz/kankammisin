@@ -1,3 +1,4 @@
+/*
 package com.anonsgroup.kankammisin.Conventers;
 
 import com.anonsgroup.kankammisin.model.Kategori;
@@ -27,3 +28,4 @@ public class StringToKategori implements Formatter<Kategori> {
         return null;
     }
 }
+*/

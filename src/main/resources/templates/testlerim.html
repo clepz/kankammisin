@@ -14,9 +14,7 @@
 <div class="divboyut">
 <table class="table table-hover table-bordered">
     <thead class="thead-dark">
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Testim</th>
+    <tr><th scope="col">Testim</th>
         <th scope="col">Kategori</th>
         <th scope="col">Test Linki</th>
 
@@ -27,9 +25,8 @@
         <td colspan="2"> Test Bulunmamaktadır </td>
     </tr>
     <tr th:each="test : ${testler}">
-        <th scope="row">1</th>
-        <td th:text="${test.getTestId()}">test1</td>
-        <td th:text="${test.getTestAdi()}">sırdas</td>
+        <td th:text="${test.getTestAdi()}">test1</td>
+        <td th:text="${test.getKategori()}">sırdas</td>
         <td th:text="${test.getTestLinki()}">kankammisin.com/best</td>
     </tr>
 

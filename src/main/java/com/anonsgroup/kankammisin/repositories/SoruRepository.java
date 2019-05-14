@@ -9,7 +9,7 @@ import java.util.List;
 public interface SoruRepository extends JpaRepository<Soru,Integer> {
 
     List<Soru> findAll();
-    Soru findByKategori_KategoriId(int sayi);
+   // Soru findByKategori_KategoriId(int sayi);
     List<Soru> findByUser(User user);
 
 }

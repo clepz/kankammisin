@@ -1,9 +1,7 @@
 package com.anonsgroup.kankammisin.controllers;
 
-import com.anonsgroup.kankammisin.Conventers.StringToKategori;
 import com.anonsgroup.kankammisin.Conventers.StringToUser;
 import com.anonsgroup.kankammisin.model.*;
-import com.anonsgroup.kankammisin.repositories.KategoriRepository;
 import com.anonsgroup.kankammisin.repositories.SoruRepository;
 import com.anonsgroup.kankammisin.repositories.TestRepository;
 import com.anonsgroup.kankammisin.repositories.UserRepository;
@@ -25,8 +23,8 @@ public class DigerController {
     @Autowired
     private SoruRepository soruRepository;
 
-    @Autowired
-    private KategoriRepository kategoriRepository;
+   /* @Autowired
+    private KategoriRepository kategoriRepository;*/
     @Autowired
     private UserRepository userRepository;
 
@@ -44,14 +42,6 @@ public class DigerController {
         return modelAndView;
     }
 
-    @GetMapping("/deneme")
-    public String getir(){
-        List<Kategori> k = kategoriRepository.findAll();
-        Soru a = soruRepository.findByKategori_KategoriId(2);
-        System.out.println(a.toString());
-        return "redirect:/";
-
-    }
     @GetMapping("/soruekle")
     public String soruEkle(){
         return "soruekle";

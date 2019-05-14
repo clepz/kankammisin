@@ -28,9 +28,6 @@ public class Soru {
     private String cevap4;
     @Getter @Setter
     private String dogruCevap;
-    @Getter @Setter
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Kategori kategori;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @Getter @Setter
@@ -50,7 +47,6 @@ public class Soru {
                 ", cevap2='" + cevap2 + '\'' +
                 ", cevap3='" + cevap3 + '\'' +
                 ", cevap4='" + cevap4 + '\'' +
-                ", kategori=" + kategori +
                 '}';
     }
 }

@@ -1,6 +1,5 @@
 package com.anonsgroup.kankammisin.config;
 
-import com.anonsgroup.kankammisin.Conventers.StringToKategori;
 import com.anonsgroup.kankammisin.Conventers.StringToUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +28,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Autowired
     StringToUser userFormatter;
-    @Autowired
+    /*@Autowired
     StringToKategori kategoriFormatter;
 
     @Override
@@ -37,5 +36,5 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addFormatter(userFormatter);
         registry.addFormatter(kategoriFormatter);
 
-    }
+    }*/
 }
