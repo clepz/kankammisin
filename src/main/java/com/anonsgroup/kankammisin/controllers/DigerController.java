@@ -6,16 +6,21 @@ import com.anonsgroup.kankammisin.repositories.SoruRepository;
 import com.anonsgroup.kankammisin.repositories.TestRepository;
 import com.anonsgroup.kankammisin.repositories.UserRepository;
 import com.anonsgroup.kankammisin.service.SecurityService;
+import javafx.scene.control.Alert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.jws.WebParam;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class DigerController {
@@ -106,6 +111,13 @@ public class DigerController {
 
 
     @GetMapping("/profil")
-    public String profil(){ return "profil"; }
+    public ModelAndView profil(){
+        ModelAndView modelAndView = new ModelAndView("profil");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        Long id = userRepository.findByUsername(username).getId();
+        modelAndView.addObject("prof",userRepository.findById(id));
+        return modelAndView;
 
+    }
 }

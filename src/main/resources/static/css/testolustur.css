@@ -111,11 +111,11 @@ body {
     width: 200px;
 }
 .testolusturDiv{
-    margin-left: 30%;
-    margin-top: 40px;
+    margin-left: 20%;
+    border-radius: 5px;
 }
 .secilisorulardiv{
-    margin-left: 45%;
+    margin-left: 15%;
     margin-top: 25px;
 }
 .sorueklediv{
@@ -126,3 +126,24 @@ body {
     border-radius: 50px;
     height: 40px;
 }
+.ust{
+    background-color: rgba(0,0,0,0.8) !important;
+    height: 100px;
+    width: 100%;
+}
+.fix{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    margin:0;
+    z-index: +1;
+}
+.cevaplaredittext{
+    border-radius: 3px;
+    background: burlywood;
+
+}
+.btn-label {position: relative;left: -12px;display: inline-block;padding: 6px 12px;background: rgba(0,0,0,0.15);border-radius: 3px 0 0 3px;}
+.btn-labeled {padding-top: 0;padding-bottom: 0;}
+.btn { margin-bottom:10px; }

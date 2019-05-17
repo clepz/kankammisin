@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<html lang="tr" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <meta charset="UTF-8">
@@ -7,10 +7,10 @@
     <div th:replace="fragments/bootstraplinks :: baglanti" ></div>
     <link th:href="@{css/profil.css}" href="/static/css/profil.css"
           rel="stylesheet" type="text/css" media="screen"/>
+    <script type="application/javascript" th:src="@{js/profil.js}" src="/static/js/profil.js"></script>
 </head>
 <body background="/images/friends.jpg" style="background-attachment: fixed">
 <div th:replace="fragments/nav :: navbar" ></div>
-
 
 
 <div class="container">
@@ -25,28 +25,28 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" name="username" class="form-control" placeholder="kullanıcı adı">
+                        <input type="text" th:value="${prof.get().getUsername()}" name="username" class="form-control" placeholder="kullanıcı adı">
 
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" name="isim" class="form-control" placeholder="adı">
+                        <input type="text" th:value="${prof.get().getIsim()}" name="isim" class="form-control" placeholder="adı">
 
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" name="soyisim" class="form-control" placeholder="soyadı">
+                        <input type="text" th:value="${prof.get().getSoyisim()}" name="soyisim" class="form-control" placeholder="soyadı">
 
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
-                        <input type="text" name="mail" class="form-control" placeholder="email">
+                        <input type="text" th:value="${prof.get().getMail()}" name="mail" class="form-control" placeholder="email">
 
                     </div>
                     <div class="input-group form-group">
@@ -59,6 +59,7 @@
                         <input type="submit" value="Bilgilerimi Güncelle" class="btn float-right guncellebutton">
                     </div>
                 </form>
+            </div>
         </div>
     </div>
 </div>
@@ -66,3 +67,5 @@
 
 </body>
 </html>
+
+

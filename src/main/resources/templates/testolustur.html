@@ -9,20 +9,26 @@
           rel="stylesheet" type="text/css" media="screen"/>
     <link th:href="@{css/diger.css}" href="/static/css/diger.css"
           rel="stylesheet" type="text/css" media="screen"/>
+
 </head>
 <body background="/images/friends.jpg" style="background-attachment: fixed">
+
     <div th:replace="fragments/nav :: navbar" ></div>
 
-<div id="app">
-
-    <form id="formDiv" action="#" th:action="@{/testolustur}" th:object="${form}" onsubmit="return sub()"  method="post">
-        <div class="row container">
-            <div class="col-md-2 col-md-offset-5" th:object="${test}">
-                <input id="testAdi" type="text" class="form-control" aria-label="Default" name="testAdi" th:value="${test.testAdi}" aria-describedby="inputGroup-sizing-default">
-                <input hidden th:name="kimin" th:value="${{kisiId}}">
-                <input id="kategori" type="text" th:name="kategori">
+        <div class="ust jumbotron" th:name="header1" id="header1">
+            <div class="row container testolusturDiv" th:object="${test}">
+                <div class="col-lg-4"> <input id="testAdi"  type="text" class="form-control testadiedittext" aria-label="Default" name="testAdi" placeholder="Test Adı" th:value="${test.testAdi}" aria-describedby="inputGroup-sizing-default"></div>
+                <div class=""> <input hidden th:name="kimin" th:value="${{kisiId}}"> </div>
+                <div class="col-lg-4"> <input id="kategori" type="text" class="form-control testadiedittext" placeholder="Kategori" th:name="kategori"></div>
+                <div class="col-lg-4"> <input type="submit" value="Test Oluştur"  class="testolusturbtn"     name="bas"/></div>
             </div>
         </div>
+
+
+    <button onclick="soruEkle(),asagiKaydir()" class="sorueklediv"  >Soru Ekle</button>
+<div id="app" class="ortaAlan">
+    <form id="formDiv" action="#" th:action="@{/testolustur}" th:object="${form}" onsubmit="return sub()"  method="post">
+
     <div id="sorular"  th:each="formList, itemStat : ${form.getFormList()}" class="card  cardboyut cardarasibosluk" >
         <div class="card-header">
             <h5 class="card-title col-9">
@@ -62,10 +68,8 @@
             <input hidden th:name="|formList[${itemStat.index}].user|" th:value="${{kisiId}}" />
         </div>
         </div>
-        <input type="submit" value="BASSSS"      name="bas"/>
-
     </form>
-    <button onclick="soruEkle()" >Soru Ekle</button>
+    <button onclick="soruEkle()" class="sorueklediv" id="sorueklebtn" >Soru Ekle</button>
 
 </div>
 
@@ -135,14 +139,16 @@
         yeniSoru++;
         secilen++;
         $("#formDiv").append(" <div id='sor-"+yeniSoru+"' class=\"card  cardboyut cardarasibosluk\"'>" +
-            " <button onclick='soruSil(this)' id='but-"+yeniSoru+"'>Sil</button> "+
+
             "        <div class=\"card-header\">" +
             "            <h5 class=\"card-title col-9\">" +
             "                <label class=\"switch\">" +
             "                    <input checked type='checkbox' name='formList["+yeniSoru+"].soruId' value='1' onchange='sayi(this)'>" +
             "                    <span class=\"slider\"></span>" +
             "                </label>" +
-            "                <input type='text' placeholder='Soru' name='formList["+ yeniSoru +"].soru' />"+
+            "                <input type='text'  placeholder='Soru' name='formList["+ yeniSoru +"].soru' />"+
+            "                <button type='button' onclick='soruSil(this)' class='btn btn-labeled btn-danger'   id='but-"+yeniSoru+"'>" +
+            "                  <span class='btn-label'><i class='glyphicon glyphicon-trash'></i></span>Sil</button> "+
             "            </h5>" +
             "        </div>" +
             "        <div class=\"card-bod container\">" +
@@ -170,7 +176,18 @@
 
     }
 
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('.ust').addClass('fix');
+            } else {
+                $('.ust').removeClass('fix');
+            }
+        });
+    });
 
+    function asagiKaydir() {
+    }
     var app = new Vue({
         el: '#app',
         data: {
