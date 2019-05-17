@@ -83,7 +83,7 @@ public class DigerController {
         testRepository.save(test);
 
         String param = ""+test.getTestId()+"+"+test.getKimin().getUsername();
-        test.setTestLinki("/test?link="+param);
+        test.setTestLinki("http://localhost:8080/testcoz?link="+param);
         testRepository.save(test);
         form.getFormList().forEach(soru -> {
             if(soru.getSoruId() != 0) {
@@ -92,7 +92,7 @@ public class DigerController {
                 soruRepository.save(soru);
             }
             });
-        return "redirect:/testolustur?basarili="+true ;
+        return "redirect:/testlerim" ;
     }
 
     @GetMapping("/testlerim")
@@ -138,7 +138,7 @@ public class DigerController {
 
     }
     @PostMapping("/testcozuldu")
-    public String testCozuldu(@ModelAttribute("form") TestOlusturForm form, @ModelAttribute Test test, @ModelAttribute("cevap") WrapperCevaplar cevap, @ModelAttribute("cozulen") String cozulen){
+    public ModelAndView testCozuldu(@ModelAttribute("form") TestOlusturForm form, @ModelAttribute Test test, @ModelAttribute("cevap") WrapperCevaplar cevap, @ModelAttribute("cozulen") String cozulen){
 
         int dogruSayisi=0;
         List<Soru> sorular = form.getFormList();
@@ -154,13 +154,17 @@ public class DigerController {
         String username = auth.getName();
         Istatistik istatistik = new Istatistik();
         istatistik.setDogruSayisi(dogruSayisi);
-        istatistik.setKankalik("simdilik yok");
+        istatistik.setKankalik(kankalikHesapla(sorular.size(),dogruSayisi));
         istatistik.setYanlisSayisi(yanlisSayisi);
         istatistik.setCozen(username);
         istatistik.setCozulen(cozulen);
         istatistik.setTestAdi(test.getTestAdi());
         istatistikRepository.save(istatistik);
-        return "testcoz";
+
+        ModelAndView modelAndView = new ModelAndView("anasayfa");
+        modelAndView.addObject("istatistik",istatistikRepository.findAllByCozulen(username));
+        return modelAndView;
+
     }
 
 
@@ -173,5 +177,28 @@ public class DigerController {
         modelAndView.addObject("prof",userRepository.findById(id));
         return modelAndView;
 
+    }
+
+    @PostMapping("profil")
+    public String profilGuncelle(@ModelAttribute("user") User user){
+
+        userRepository.save(user);
+        return "redirect:/profil";
+    }
+
+    private String kankalikHesapla(int soruSayisi,int dogruSayisi){
+        float yuzdelik = (float) ((float) dogruSayisi / soruSayisi * 100.0);
+        if(yuzdelik >= 100)
+            return "BFF.";
+        if( yuzdelik > 93 )
+            return "Sırdaş Kankam.";
+        if(yuzdelik > 65)
+            return "Kankam";
+        if(yuzdelik > 33)
+            return "Sıradan Arkadaş.";
+        if(yuzdelik > 6)
+            return "Aramızdaki Arkadaşlığı Gözden Geçirmeliyiz.";
+        else
+            return "Bu kim?";
     }
 }

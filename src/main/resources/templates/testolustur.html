@@ -14,20 +14,19 @@
 <body background="/images/friends.jpg" style="background-attachment: fixed">
 
     <div th:replace="fragments/nav :: navbar" ></div>
+    <form id="formDiv" action="#" th:action="@{/testolustur}" th:object="${form}" onsubmit="return sub()"  method="post">
 
-        <div class="ust jumbotron" th:name="header1" id="header1">
+        <div class="ust jumbotron" id="header1">
             <div class="row container testolusturDiv" th:object="${test}">
                 <div class="col-lg-4"> <input id="testAdi"  type="text" class="form-control testadiedittext" aria-label="Default" name="testAdi" placeholder="Test Adı" th:value="${test.testAdi}" aria-describedby="inputGroup-sizing-default"></div>
                 <div class=""> <input hidden th:name="kimin" th:value="${{kisiId}}"> </div>
                 <div class="col-lg-4"> <input id="kategori" type="text" class="form-control testadiedittext" placeholder="Kategori" th:name="kategori"></div>
-                <div class="col-lg-4"> <input type="submit" value="Test Oluştur"  class="testolusturbtn"     name="bas"/></div>
+                <div class="col-lg-4"> <input type="submit" value="Test Oluştur"  class="testolusturbtn"/></div>
             </div>
         </div>
 
 
-    <button onclick="soruEkle(),asagiKaydir()" class="sorueklediv"  >Soru Ekle</button>
 <div id="app" class="ortaAlan">
-    <form id="formDiv" action="#" th:action="@{/testolustur}" th:object="${form}" onsubmit="return sub()"  method="post">
 
     <div id="sorular"  th:each="formList, itemStat : ${form.getFormList()}" class="card  cardboyut cardarasibosluk" >
         <div class="card-header">
@@ -67,11 +66,10 @@
          <!--   <input hidden th:name="|formList[${itemStat.index}].kategori|" th:value="${formList.getKategori().getKategoriId()}" >-->
             <input hidden th:name="|formList[${itemStat.index}].user|" th:value="${{kisiId}}" />
         </div>
-        </div>
+    </div>
+</div>
     </form>
     <button onclick="soruEkle()" class="sorueklediv" id="sorueklebtn" >Soru Ekle</button>
-
-</div>
 
 <script th:inline="javascript">
 

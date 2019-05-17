@@ -27,7 +27,7 @@
     <tr th:each="test : ${testler}">
         <td th:text="${test.getTestAdi()}">test1</td>
         <td th:text="${test.getKategori()}">sırdas</td>
-        <td th:text="${test.getTestLinki()}">kankammisin.com/best</td>
+        <td> <a th:href="${test.getTestLinki()}" th:text="${test.getTestLinki()}"></a> </td>
     </tr>
 
     </tbody>
