@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Test Çöz</title>
+    <div th:replace="fragments/bootstraplinks :: baglanti" ></div>
+    <link th:href="@{css/testolustur.css}" href="/static/css/testolustur.css"
+          rel="stylesheet" type="text/css" media="screen"/>
+    <link th:href="@{css/diger.css}" href="/static/css/diger.css"
+          rel="stylesheet" type="text/css" media="screen"/>
+</head>
+
+</head>
+<body background="/images/friends.jpg" style="background-attachment: fixed">
+    <div th:replace="fragments/nav :: navbar" ></div>
+
+    <form id="formDiv" action="#" th:action="@{/testcozuldu}" th:object="${form}"  method="post">
+        <div class="row container">
+            <div class="col-md-2 col-md-offset-5" th:object="${test}">
+                <input id="testAdi" type="text" class="form-control" aria-label="Default" name="testAdi" th:value="${test.testAdi}" aria-describedby="inputGroup-sizing-default">
+                <input id="kategori" type="text" th:name="kategori" th:value="${test.getKategori()}">
+            </div>
+        </div>
+        <div id="sorular"  th:each="formList, itemStat : ${form.getFormList()}" class="card  cardboyut cardarasibosluk" >
+            <div class="card-header">
+                <h5 class="card-title col-9">
+                    <input hidden th:name="|formList[${itemStat.index}].soru|" th:value="${formList.getSoru()}"/>
+                    <span th:text="${formList.getSoru()}"></span>
+                </h5>
+            </div>
+            <div class="card-bod container">
+                <div class="funkyradio row">
+                    <div class="funkyradio-success col" >
+                        <input type="radio" th:name="|cevap[${itemStat.index}]|" th:value="${formList.getCevap1()}" th:id="${formList.getSoruId()}+${formList.getCevap1()}" />
+                        <input hidden th:name="|formList[${itemStat.index}].cevap1|" th:value="${formList.getCevap1()}" />
+                        <label th:text="${formList.getCevap1()}" th:for="${formList.getSoruId()}+${formList.getCevap1()}"></label>
+                    </div>
+                    <div class="funkyradio-success col" >
+                        <input type="radio" th:name="|cevap[${itemStat.index}]|" th:value="${formList.getCevap2()}" th:id="${formList.getSoruId()}+${formList.getCevap2()}" />
+                        <input hidden th:name="|formList[${itemStat.index}].cevap2|" th:value="${formList.getCevap2()}" />
+                        <label th:text="${formList.getCevap2()}" th:for="${formList.getSoruId()}+${formList.getCevap2()}"></label>
+                    </div>
+                    <div class="funkyradio-success col" >
+                        <input type="radio" th:name="|cevap[${itemStat.index}]|" th:value="${formList.getCevap3()}" th:id="${formList.getSoruId()}+${formList.getCevap3()}" />
+                        <input hidden th:name="|formList[${itemStat.index}].cevap3|" th:value="${formList.getCevap3()}" />
+                        <label th:text="${formList.getCevap3()}" th:for="${formList.getSoruId()}+${formList.getCevap3()}"></label>
+                    </div>
+                    <div class="funkyradio-success col" >
+                        <input type="radio" th:name="|cevap[${itemStat.index}]|" th:value="${formList.getCevap4()}" th:id="${formList.getSoruId()}+${formList.getCevap4()}" />
+                        <input hidden th:name="|formList[${itemStat.index}].cevap4|" th:value="${formList.getCevap4()}" />
+                        <label th:text="${formList.getCevap4()}" th:for="${formList.getSoruId()}+${formList.getCevap4()}"></label>
+                    </div>
+                </div>
+                <input hidden th:name="|formList[${itemStat.index}].dogruCevap|" th:value="${formList.getDogruCevap()}" />
+                <input hidden th:name="|formList[${itemStat.index}].baslik|" th:value="${formList.getBaslik()}" />
+            </div>
+        </div>
+        <input hidden th:name="cozulen" th:value="${cozulen}">
+        <input type="submit" value="BASSSS"      name="bas"/>
+
+    </form>
+
+
+</body>
+</html>

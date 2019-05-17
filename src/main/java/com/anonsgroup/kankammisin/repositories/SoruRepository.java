@@ -12,4 +12,6 @@ public interface SoruRepository extends JpaRepository<Soru,Integer> {
    // Soru findByKategori_KategoriId(int sayi);
     List<Soru> findByUser(User user);
 
+    List<Soru> findAllByTest_TestId(Long id);
+
 }

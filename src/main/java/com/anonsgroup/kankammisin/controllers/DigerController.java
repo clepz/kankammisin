@@ -1,7 +1,7 @@
 package com.anonsgroup.kankammisin.controllers;
 
-import com.anonsgroup.kankammisin.Conventers.StringToUser;
 import com.anonsgroup.kankammisin.model.*;
+import com.anonsgroup.kankammisin.repositories.IstatistikRepository;
 import com.anonsgroup.kankammisin.repositories.SoruRepository;
 import com.anonsgroup.kankammisin.repositories.TestRepository;
 import com.anonsgroup.kankammisin.repositories.UserRepository;
@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -31,6 +30,9 @@ public class DigerController {
     @Autowired
     private TestRepository testRepository;
 
+    @Autowired
+    private IstatistikRepository istatistikRepository;
+
 
     @Autowired
     private SecurityService securityService;
@@ -38,7 +40,9 @@ public class DigerController {
     @GetMapping({"/", "/anasayfa"})
     public ModelAndView anasayfa(Model model) {
         ModelAndView modelAndView = new ModelAndView("anasayfa");
-        modelAndView.addObject(soruRepository.findAll());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        modelAndView.addObject("istatistik",istatistikRepository.findAllByCozulen(username));
         return modelAndView;
     }
 
@@ -81,9 +85,7 @@ public class DigerController {
         String param = ""+test.getTestId()+"+"+test.getKimin().getUsername();
         test.setTestLinki("/test?link="+param);
         testRepository.save(test);
-        System.out.println(test.getTestId());
         form.getFormList().forEach(soru -> {
-            System.out.println(soru.getSoruId());
             if(soru.getSoruId() != 0) {
                 soru.setSoruId(0);
                 soru.setTest(test);
@@ -99,9 +101,66 @@ public class DigerController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         Long id = userRepository.findByUsername(username).getId();
-        System.out.println("teslerim" + " " + id);
         modelAndView.addObject("testler",testRepository.findAllByKimin_Id(id));
         return modelAndView;
+    }
+
+    @GetMapping("/testcoz")
+    public ModelAndView testCoz(String link,Integer error){
+        if(error != null){
+            ModelAndView modelAndView = new ModelAndView("hata");
+            switch (error){
+                case ErrorKodlari.AYNI_KISI_TEST:
+                    modelAndView.addObject("hata","Kendi Testini Çözemezsin");
+                    break;
+                case ErrorKodlari.TEST_BULUNMAMAKTA:
+                    modelAndView.addObject("hata","Böyle Bir Test Bulunmamaktadır.");
+            }
+            return modelAndView;
+
+        }
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        ModelAndView modelAndView = new ModelAndView("testcoz");
+        String [] parametreler = link.split(" ");
+        if(username.equals(parametreler[1]))
+            return new ModelAndView("forward:/testcoz?error=1");
+        List<Soru> sorular = soruRepository.findAllByTest_TestId(Long.valueOf(parametreler[0]));
+        TestOlusturForm testOlusturForm = new TestOlusturForm();
+        testOlusturForm.setFormList(sorular);
+
+        modelAndView.addObject("form", testOlusturForm);
+        modelAndView.addObject("test",testRepository.findByTestId(Long.valueOf(parametreler[0])));
+        modelAndView.addObject("cozulen",parametreler[1]);
+
+
+        return modelAndView;
+
+    }
+    @PostMapping("/testcozuldu")
+    public String testCozuldu(@ModelAttribute("form") TestOlusturForm form, @ModelAttribute Test test, @ModelAttribute("cevap") WrapperCevaplar cevap, @ModelAttribute("cozulen") String cozulen){
+
+        int dogruSayisi=0;
+        List<Soru> sorular = form.getFormList();
+        List<String> cevaplar = cevap.getCevap();
+
+        for(int i = 0 ; i<sorular.size() ; i++ ){
+            if(sorular.get(i).getDogruCevap().equals(cevaplar.get(i)))
+                dogruSayisi++;
+        }
+        int yanlisSayisi = sorular.size()-dogruSayisi;
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        Istatistik istatistik = new Istatistik();
+        istatistik.setDogruSayisi(dogruSayisi);
+        istatistik.setKankalik("simdilik yok");
+        istatistik.setYanlisSayisi(yanlisSayisi);
+        istatistik.setCozen(username);
+        istatistik.setCozulen(cozulen);
+        istatistik.setTestAdi(test.getTestAdi());
+        istatistikRepository.save(istatistik);
+        return "testcoz";
     }
 
 

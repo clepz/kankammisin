@@ -8,4 +8,5 @@ import java.util.List;
 public interface TestRepository extends JpaRepository<Test,Long> {
 
     List<Test> findAllByKimin_Id(Long id);
+    Test findByTestId(Long id);
 }

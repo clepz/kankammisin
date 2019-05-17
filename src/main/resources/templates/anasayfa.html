@@ -22,34 +22,17 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <th scope="row">test1</th>
-        <td>sero</td>
-        <td>10</td>
-        <td>5</td>
-        <td>bff</td>
+    <tr th:if="${istatistik.empty}">
+        <td colspan="2"> Hiç bir testin çözülmemiş. </td>
     </tr>
-    <tr>
-        <th scope="row">test2</th>
-        <td>haso</td>
-        <td>10</td>
-        <td>3</td>
-        <td>kankam</td>
+    <tr th:each="ist : ${istatistik}">
+        <td th:text="${ist.getTestAdi()}">test1</td>
+        <td th:text="${ist.getCozen()}">sırdas</td>
+        <td th:text="${ist.getDogruSayisi()}">kankammisin.com/best</td>
+        <td th:text="${ist.getYanlisSayisi()}">sırdas</td>
+        <td th:text="${ist.getKankalik()}">sırdas</td>
     </tr>
-    <tr>
-        <th scope="row">test3</th>
-        <td>tıro</td>
-        <td>10</td>
-        <td>2</td>
-        <td>sırdas</td>
-    </tr>
-    <tr>
-        <th scope="row">test4</th>
-        <td>aşkın</td>
-        <td>12</td>
-        <td>5</td>
-        <td>öylesine arkadaş</td>
-    </tr>
+
     </tbody>
 </table>
     <div class="row container">

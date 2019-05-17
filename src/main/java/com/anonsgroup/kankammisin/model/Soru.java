@@ -47,6 +47,7 @@ public class Soru {
                 ", cevap2='" + cevap2 + '\'' +
                 ", cevap3='" + cevap3 + '\'' +
                 ", cevap4='" + cevap4 + '\'' +
+                ", dogruCevap ='" + dogruCevap +'\''+
                 '}';
     }
 }

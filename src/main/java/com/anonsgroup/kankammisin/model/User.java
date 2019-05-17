@@ -18,7 +18,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter @Setter private long id;
 
-    @UniqueElements
     @Getter @Setter private String username;
 
     @Getter @Setter private String parola;

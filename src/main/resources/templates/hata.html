@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Test Çöz</title>
+    <div th:replace="fragments/bootstraplinks :: baglanti" ></div>
+    <link th:href="@{css/testolustur.css}" href="/static/css/testolustur.css"
+          rel="stylesheet" type="text/css" media="screen"/>
+    <link th:href="@{css/diger.css}" href="/static/css/diger.css"
+          rel="stylesheet" type="text/css" media="screen"/>
+</head>
+<body background="/images/friends.jpg" style="background-attachment: fixed">
+<div th:replace="fragments/nav :: navbar" ></div>
+
+<div class="alert alert-danger mt-4" role="alert" ><label th:text="${hata}"></label>
+</div>
+
+</body>
+</html>
