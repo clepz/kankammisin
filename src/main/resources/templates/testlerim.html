@@ -10,14 +10,13 @@
 </head>
 <body background="/images/friends.jpg" style="background-attachment: fixed">
 <div th:replace="fragments/nav :: navbar" ></div>
-
-<div class="divboyut">
+<div class="arkadiv">
+    <h3 class="h3div">Testlerim</h3>
 <table class="table table-hover table-bordered">
     <thead class="thead-dark">
     <tr><th scope="col">Testim</th>
         <th scope="col">Kategori</th>
         <th scope="col">Test Linki</th>
-
     </tr>
     </thead>
     <tbody>
@@ -29,7 +28,6 @@
         <td th:text="${test.getKategori()}">sırdas</td>
         <td> <a th:href="${test.getTestLinki()}" th:text="${test.getTestLinki()}"></a> </td>
     </tr>
-
     </tbody>
 </table>
 </div>

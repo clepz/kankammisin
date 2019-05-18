@@ -105,6 +105,8 @@ body {
 .testolusturbtn{
     border-radius: 40px;
     background: #5cb85c;
+    width: 150px;
+    height: 38px;
 }
 
 .testadiedittext{
@@ -121,6 +123,15 @@ body {
     margin-top: 25px;
 }
 .sorueklediv{
+    width: 30%;
+    margin-top: 20px;
+    margin-left: 35%;
+    margin-bottom: 70px;
+    background: #FFC312;
+    border-radius: 50px;
+    height: 40px;
+}
+.sorueklediv2{
     width: 30%;
     margin-top: 20px;
     margin-left: 35%;
@@ -144,7 +155,6 @@ body {
 .cevaplaredittext{
     border-radius: 3px;
     background: burlywood;
-
 }
 .marjin{
     margin-top: 20px;

@@ -9,7 +9,8 @@
           rel="stylesheet" type="text/css" media="screen"/>
 </head>
 <body background="/images/friends.jpg">
-<div class="divboyut container">
+<div class="arkadiv">
+    <h3 class="h3div">Test İstatistikleri</h3>
 <table class="table table-hover table-bordered">
     <thead class="thead-dark">
     <tr>
@@ -23,7 +24,12 @@
     </thead>
     <tbody>
     <tr th:if="${istatistik.empty}">
-        <td colspan="2"> Hiç bir testin çözülmemiş. </td>
+        <td colspan="5"> <div class="row container testolusturagit">
+            <h3> Hala Testini Oluşturmadın mı Yoksa? Hemen Test Oluştur Kankaa :) </h3>
+            <div>
+                <button type="Button" onClick="location.href='/testolustur'" style="margin-left: 25px" class="btn btn-primary col">Test Oluştur</button>
+            </div>
+        </div> </td>
     </tr>
     <tr th:each="ist : ${istatistik}">
         <td th:text="${ist.getTestAdi()}">test1</td>
@@ -35,12 +41,12 @@
 
     </tbody>
 </table>
-    <div class="row container">
+</div>
+<!--<div class="row container testolusturagit">
         <h3> Hala Testini Oluşturmadın mı Yoksa? Hemen Test Oluştur Kankaa :) </h3>
         <div>
             <button type="Button" onClick="location.href='/testolustur'" style="margin-left: 25px" class="btn btn-primary col">Test Oluştur</button>
         </div>
-    </div>
-</div>
+    </div>-->
 </body>
 </html>
