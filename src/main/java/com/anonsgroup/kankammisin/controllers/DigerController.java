@@ -6,6 +6,7 @@ import com.anonsgroup.kankammisin.repositories.SoruRepository;
 import com.anonsgroup.kankammisin.repositories.TestRepository;
 import com.anonsgroup.kankammisin.repositories.UserRepository;
 import com.anonsgroup.kankammisin.service.SecurityService;
+import com.anonsgroup.kankammisin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,6 +34,9 @@ public class DigerController {
     @Autowired
     private IstatistikRepository istatistikRepository;
 
+
+    @Autowired
+    private UserService kullaniciService;
 
     @Autowired
     private SecurityService securityService;
@@ -181,7 +185,10 @@ public class DigerController {
 
     @PostMapping("profil")
     public String profilGuncelle(@ModelAttribute("user") User user){
-
+        User eski = userRepository.findById(user.getId());
+        eski.setMail(user.getMail());
+        eski.setIsim(user.getIsim());
+        eski.setSoyisim(user.getSoyisim());
         userRepository.save(user);
         return "redirect:/profil";
     }

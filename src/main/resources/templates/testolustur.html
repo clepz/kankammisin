@@ -25,8 +25,9 @@
             </div>
         </div>
 
+        <label onclick="soruEkle()" class="sorueklediv" style="text-align: center; padding-top: 10px"  >Soru Ekle</label>
 
-<div id="app" class="ortaAlan">
+        <div id="app" class="ortaAlan">
 
     <div id="sorular"  th:each="formList, itemStat : ${form.getFormList()}" class="card  cardboyut cardarasibosluk" >
         <div class="card-header">
@@ -171,6 +172,7 @@
             "            <input hidden name='formList["+yeniSoru+"].user' value="+kisiId+" />" +
             "        </div>" +
             "        </div>");
+        window.scrollTo(0,document.body.scrollHeight);
 
     }
 
