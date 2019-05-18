@@ -16,12 +16,12 @@
     <div th:replace="fragments/nav :: navbar" ></div>
     <form id="formDiv" action="#" th:action="@{/testolustur}" th:object="${form}" onsubmit="return sub()"  method="post">
 
-        <div class="ust jumbotron" id="header1">
+        <div class="ust" id="header1">
             <div class="row container testolusturDiv" th:object="${test}">
-                <div class="col-lg-4"> <input id="testAdi"  type="text" class="form-control testadiedittext" aria-label="Default" name="testAdi" placeholder="Test Adı" th:value="${test.testAdi}" aria-describedby="inputGroup-sizing-default"></div>
-                <div class=""> <input hidden th:name="kimin" th:value="${{kisiId}}"> </div>
-                <div class="col-lg-4"> <input id="kategori" type="text" class="form-control testadiedittext" placeholder="Kategori" th:name="kategori"></div>
-                <div class="col-lg-4"> <input type="submit" value="Test Oluştur"  class="testolusturbtn"/></div>
+                <div class="col-lg-4 marjin"> <input id="testAdi"  type="text" class="form-control testadiedittext" aria-label="Default" name="testAdi" placeholder="Test Adı" th:value="${test.testAdi}" aria-describedby="inputGroup-sizing-default"></div>
+                <div class="marjin"> <input hidden th:name="kimin" th:value="${{kisiId}}"> </div>
+                <!-- <div class="col-lg-4 marjin"> <input hidden id="kategori" type="text" class="form-control" placeholder="Kategori" th:name="kategori"></div>-->
+                <div class="col-lg-4 marjin"> <input type="submit" value="Test Oluştur"  class="testolusturbtn"/></div>
             </div>
         </div>
 
