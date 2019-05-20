@@ -16,16 +16,16 @@
     <div th:replace="fragments/nav :: navbar" ></div>
     <form id="formDiv" action="#" th:action="@{/testolustur}" th:object="${form}" onsubmit="return sub()"  method="post">
 
-        <div class="ust jumbotron" id="header1">
+        <div class="ust" id="header1">
             <div class="row container testolusturDiv" th:object="${test}">
-                <div class="col-lg-4"> <input id="testAdi"  type="text" class="form-control testadiedittext" aria-label="Default" name="testAdi" placeholder="Test Adı" th:value="${test.testAdi}" aria-describedby="inputGroup-sizing-default"></div>
-                <div class=""> <input hidden th:name="kimin" th:value="${{kisiId}}"> </div>
-                <div class="col-lg-4"> <input id="kategori" type="text" class="form-control testadiedittext" placeholder="Kategori" th:name="kategori"></div>
-                <div class="col-lg-4"> <input type="submit" value="Test Oluştur"  class="testolusturbtn"/></div>
+                <div class="col-lg-4 marjin"> <input id="testAdi"  type="text" class="form-control testadiedittext" aria-label="Default" name="testAdi" placeholder="Test Adı" th:value="${test.testAdi}" aria-describedby="inputGroup-sizing-default"></div>
+                <div class="marjin"> <input hidden th:name="kimin" th:value="${{kisiId}}"> </div>
+                <!-- <div class="col-lg-4 marjin"> <input hidden id="kategori" type="text" class="form-control" placeholder="Kategori" th:name="kategori"></div>-->
+                <div class="col-lg-4 marjin"> <input type="submit" value="Test Oluştur"  class="testolusturbtn"/></div>
             </div>
         </div>
 
-        <label onclick="soruEkle()" class="sorueklediv" style="text-align: center; padding-top: 10px"  >Soru Ekle</label>
+        <label onclick="soruEkle()" class="sorueklediv2" style="text-align: center; padding-top: 10px"  >Soru Ekle</label>
 
         <div id="app" class="ortaAlan">
 
@@ -145,29 +145,29 @@
             "                    <input checked type='checkbox' name='formList["+yeniSoru+"].soruId' value='1' onchange='sayi(this)'>" +
             "                    <span class=\"slider\"></span>" +
             "                </label>" +
-            "                <input type='text'  placeholder='Soru' name='formList["+ yeniSoru +"].soru' />"+
+            "                <input type='text'  placeholder='Soru' class='sorusordiv' name='formList["+ yeniSoru +"].soru' />"+
             "                <button type='button' onclick='soruSil(this)' class='btn btn-labeled btn-danger'   id='but-"+yeniSoru+"'>" +
-            "                  <span class='btn-label'><i class='glyphicon glyphicon-trash'></i></span>Sil</button> "+
+            "                  <span class='btn-label'><i class='fas fa-trash-alt'></i></span>Sil</button> "+
             "            </h5>" +
             "        </div>" +
             "        <div class=\"card-bod container\">" +
             "            <div class=\"funkyradio row\">" +
             "                <div class=\"funkyradio-success col\" >" +
             "                    <input type=\"radio\" name='formList["+ yeniSoru +"].dogruCevap' id='den-"+yeniSoru+"-1' value=''/>" +
-            "                   <label for='den-"+yeniSoru+"-1'> <input type='text' name='formList["+ yeniSoru +"].cevap1' placeholder='cevap1' id='dem-"+yeniSoru+"-1' onkeyup='degerVer(this)'/> </label>" +
+            "                   <label for='den-"+yeniSoru+"-1'> <input type='text'  class='cevaplardiv' name='formList["+ yeniSoru +"].cevap1' placeholder='cevap1' id='dem-"+yeniSoru+"-1' onkeyup='degerVer(this)'/> </label>" +
             "                </div>" +
             "                <div class=\"funkyradio-success col\" >" +
             "                    <input type=\"radio\" name='formList["+ yeniSoru +"].dogruCevap' id='den-"+yeniSoru+"-2' />" +
-            "                   <label for='den-"+yeniSoru+"-2'> <input type='text' name='formList["+ yeniSoru +"].cevap2' placeholder='cevap2' id='dem-"+yeniSoru+"-2' onkeyup='degerVer(this)'/> </label>" +
+            "                   <label for='den-"+yeniSoru+"-2'> <input type='text'  class='cevaplardiv' name='formList["+ yeniSoru +"].cevap2' placeholder='cevap2' id='dem-"+yeniSoru+"-2' onkeyup='degerVer(this)'/> </label>" +
             "              </div>" +
             "                <div class=\"funkyradio-success col\" >" +
             "                    <input type=\"radio\" name='formList["+ yeniSoru +"].dogruCevap' id='den-"+yeniSoru+"-3' />" +
-            "                   <label for='den-"+yeniSoru+"-3'> <input type='text' name='formList["+ yeniSoru +"].cevap3' placeholder='cevap3'id='dem-"+yeniSoru+"-3' onkeyup='degerVer(this)'/> </label>" +        "                </div>" +
+            "                   <label for='den-"+yeniSoru+"-3'> <input type='text'  class='cevaplardiv' name='formList["+ yeniSoru +"].cevap3' placeholder='cevap3'id='dem-"+yeniSoru+"-3' onkeyup='degerVer(this)'/> </label>" +        "                </div>" +
             "                <div class=\"funkyradio-success col\" >" +
             "                    <input type=\"radio\" name='formList["+ yeniSoru +"].dogruCevap' id='den-"+yeniSoru+"-4' /> " +
-            "                   <label for='den-"+yeniSoru+"-4'> <input type='text' name='formList["+ yeniSoru +"].cevap4' placeholder='cevap4'id='dem-"+yeniSoru+"-4' onkeyup='degerVer(this)'/> </label>" +        "                </div>" +
+            "                   <label for='den-"+yeniSoru+"-4'> <input type='text' class='cevaplardiv' name='formList["+ yeniSoru +"].cevap4' placeholder='cevap4'id='dem-"+yeniSoru+"-4' onkeyup='degerVer(this)'/> </label>" +        "                </div>" +
             "            </div>" + // her label içeriindeki inputlara id eklenecek.
-            "            <input name='formList["+yeniSoru+"].baslik' placeholder='baslik' />" +
+            "            <input hidden name='formList["+yeniSoru+"].baslik' placeholder='baslik' />" +
 //            "            <input name='formList["+ yeniSoru +"].kategori' placeholder='kategori' />" +
             "            <input hidden name='formList["+yeniSoru+"].user' value="+kisiId+" />" +
             "        </div>" +
@@ -186,8 +186,6 @@
         });
     });
 
-    function asagiKaydir() {
-    }
     var app = new Vue({
         el: '#app',
         data: {

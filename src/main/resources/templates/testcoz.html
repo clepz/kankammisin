@@ -9,17 +9,19 @@
           rel="stylesheet" type="text/css" media="screen"/>
     <link th:href="@{css/diger.css}" href="/static/css/diger.css"
           rel="stylesheet" type="text/css" media="screen"/>
+    <link th:href="@{css/testcoz.css}" href="/static/css/testcoz.css"
+          rel="stylesheet" type="text/css" media="screen"/>
 </head>
 
 </head>
 <body background="/images/friends.jpg" style="background-attachment: fixed">
     <div th:replace="fragments/nav :: navbar" ></div>
-
+    <div class="testadidiv" th:object="${test}"><h3 th:text="${test.testAdi}" class="testaditext"  name="testAdi"></h3></div>
     <form id="formDiv" action="#" th:action="@{/testcozuldu}" th:object="${form}"  method="post">
         <div class="row container">
             <div class="col-md-2 col-md-offset-5" th:object="${test}">
-                <input id="testAdi" type="text" class="form-control" aria-label="Default" name="testAdi" th:value="${test.testAdi}" aria-describedby="inputGroup-sizing-default">
-                <input id="kategori" type="text" th:name="kategori" th:value="${test.getKategori()}">
+                <input id="testAdi" type="text" hidden class="form-control" aria-label="Default" name="testAdi" th:value="${test.testAdi}" aria-describedby="inputGroup-sizing-default">
+                <input id="kategori" type="text" hidden th:name="kategori" th:value="${test.getKategori()}">
             </div>
         </div>
         <div id="sorular"  th:each="formList, itemStat : ${form.getFormList()}" class="card  cardboyut cardarasibosluk" >
@@ -57,7 +59,7 @@
             </div>
         </div>
         <input hidden th:name="cozulen" th:value="${cozulen}">
-        <input type="submit" value="BASSSS"      name="bas"/>
+        <div class="testcozdumbtndiv"><input type="submit" value="Testi Çözdüm"  class="testolusturbtn" name="bas"/></div>
 
     </form>
 

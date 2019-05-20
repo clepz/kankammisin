@@ -1,0 +1,27 @@
+.testcozdumbtndiv{
+    margin-left: 45%;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+.testolusturbtn{
+    border-radius: 40px;
+    background: #5cb85c;
+    width: 150px;
+    height: 38px;
+
+}
+.testadidiv{
+    margin-left: 45%;
+}
+.testaditext{
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background: lightgoldenrodyellow;
+    width: 200px;
+    text-align: center;
+    padding: 5px;
+}
+.h3div{
+    margin-left: 40%;
+    color: black;
+}
