@@ -8,5 +8,6 @@ import java.util.List;
 public interface IstatistikRepository extends JpaRepository<Istatistik,Long> {
 
     List<Istatistik> findAllByCozulen(String a);
+    List<Istatistik> findAllByCozenAndCozulen(String cozen, String cozulen);
 
 }

@@ -50,6 +50,15 @@ public class DigerController {
         return modelAndView;
     }
 
+    @GetMapping("ara")
+    public ModelAndView istatistikAra(@RequestParam("cozen") String cozen){
+        ModelAndView modelAndView = new ModelAndView("anasayfa");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        modelAndView.addObject("istatistik",istatistikRepository.findAllByCozenAndCozulen(cozen,username));
+        return modelAndView;
+    }
+
     @GetMapping("/soruekle")
     public String soruEkle(){
         return "soruekle";
