@@ -28,13 +28,4 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Autowired
     StringToUser userFormatter;
-    /*@Autowired
-    StringToKategori kategoriFormatter;
-
-    @Override
-    public void addFormatters(FormatterRegistry registry) {
-        registry.addFormatter(userFormatter);
-        registry.addFormatter(kategoriFormatter);
-
-    }*/
 }
