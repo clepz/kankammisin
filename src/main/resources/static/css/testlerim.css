@@ -22,7 +22,9 @@ table{
     font-weight: bold;
 }
 .kopyalaicon{
+    border: 0px;
     background-color:transparent;
     float: right;
     font-size: 20px;
+    margin-right: 15px;
 }

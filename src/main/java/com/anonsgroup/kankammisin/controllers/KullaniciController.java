@@ -2,6 +2,8 @@ package com.anonsgroup.kankammisin.controllers;
 
 
 import com.anonsgroup.kankammisin.model.User;
+import com.anonsgroup.kankammisin.repositories.SoruRepository;
+import com.anonsgroup.kankammisin.repositories.TestRepository;
 import com.anonsgroup.kankammisin.service.UserService;
 import com.anonsgroup.kankammisin.service.SecurityService;
 import com.anonsgroup.kankammisin.validator.UserValidator;
@@ -12,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class KullaniciController {
@@ -24,6 +27,8 @@ public class KullaniciController {
 
     @Autowired
     UserValidator kullaniciValidator;
+
+
 
     @GetMapping("/kayitol")
     public String kayitol(Model model){
@@ -59,5 +64,6 @@ public class KullaniciController {
 
         return "giris";
     }
+
 
 }

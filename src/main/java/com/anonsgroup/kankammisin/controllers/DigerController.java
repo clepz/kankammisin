@@ -202,6 +202,7 @@ public class DigerController {
         return "redirect:/profil";
     }
 
+
     private String kankalikHesapla(int soruSayisi,int dogruSayisi){
         float yuzdelik = (float) ((float) dogruSayisi / soruSayisi * 100.0);
         if(yuzdelik >= 100)
